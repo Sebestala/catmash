@@ -26,7 +26,7 @@ export default function ResponsiveCatImage() {
       <Image
         src="/cat_topBar.webp"
         alt="Happy Cat"
-        objectFit="cover"
+        style={{ objectFit: "cover" }}
         fill
         priority
       />

@@ -30,9 +30,9 @@ export default function CatLikeBox({
         <Image
           src={imageUrl}
           alt={`Chat mignon ${catNumber}`}
-          layout="fill"
-          objectFit="cover"
           className={`transition-all duration-300 ease-in-out ${isLiked ? "scale-105" : ""}`}
+          style={{ objectFit: "cover" }}
+          fill
         />
         <div
           className={`bg-navy-blue absolute inset-0 flex items-center justify-center bg-opacity-0 transition-all duration-300 ${isLiked ? "bg-opacity-20" : "hover:bg-opacity-10"}`}
