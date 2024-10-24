@@ -9,6 +9,8 @@ interface CatContextType {
   incrementScore: (id: string) => void;
   getRandomPair: () => [Cat, Cat] | null;
   isFetching: boolean;
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
 }
 
 const CatContext = createContext<CatContextType | undefined>(undefined);
@@ -27,6 +29,7 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cats, setCats] = useState<Cat[]>([]);
   const [totalMatches, setTotalMatches] = useState(0);
   const [isFetching, setIsFetching] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetch("https://data.latelier.co/cats.json")
@@ -69,6 +72,8 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
         incrementScore,
         getRandomPair,
         isFetching,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

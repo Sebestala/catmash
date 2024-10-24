@@ -33,7 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="fixed top-0 z-50 w-full">
-          <div className="flex w-full flex-col items-center justify-center space-y-2 bg-white p-4">
+          <div className="flex w-full flex-col items-center justify-center space-y-2 p-4">
             <ResponsiveCatImage />
             <h1 className="flex items-center justify-center text-lg font-bold text-blue-900 md:text-xl lg:text-2xl">
               CATMASH
