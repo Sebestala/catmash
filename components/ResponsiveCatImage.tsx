@@ -27,8 +27,8 @@ export default function ResponsiveCatImage() {
         src="/cat_topBar.webp"
         alt="Happy Cat"
         style={{ objectFit: "cover" }}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         fill
-        priority
       />
     </motion.div>
   );

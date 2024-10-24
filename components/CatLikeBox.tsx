@@ -32,7 +32,9 @@ export default function CatLikeBox({
           alt={`Chat mignon ${catNumber}`}
           className={`transition-all duration-300 ease-in-out ${isLiked ? "scale-105" : ""}`}
           style={{ objectFit: "cover" }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill
+          priority
         />
         <div
           className={`bg-navy-blue absolute inset-0 flex items-center justify-center bg-opacity-0 transition-all duration-300 ${isLiked ? "bg-opacity-20" : "hover:bg-opacity-10"}`}
