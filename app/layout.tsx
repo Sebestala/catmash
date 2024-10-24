@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import { ChevronUp } from "lucide-react";
 import ResponsiveCatImage from "@/components/ResponsiveCatImage";
+import { CatProvider } from "@/context/CatContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,7 +41,7 @@ export default function RootLayout({
           </div>
         </header>
         <main className="container mx-auto mt-28 flex-grow px-4">
-          {children}
+          <CatProvider>{children}</CatProvider>
         </main>
         <footer>
           <nav className="flex justify-center">

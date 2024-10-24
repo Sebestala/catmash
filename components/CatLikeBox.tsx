@@ -17,8 +17,13 @@ export default function CatLikeBox({
   const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = () => {
-    setIsLiked(!isLiked);
-    onLike();
+    setIsLiked(true);
+    const timeoutId = setTimeout(() => {
+      onLike();
+      setIsLiked(false);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
   };
 
   return (
@@ -35,6 +40,7 @@ export default function CatLikeBox({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           fill
           priority
+          unoptimized
         />
         <div
           className={`bg-navy-blue absolute inset-0 flex items-center justify-center bg-opacity-0 transition-all duration-300 ${isLiked ? "bg-opacity-20" : "hover:bg-opacity-10"}`}
