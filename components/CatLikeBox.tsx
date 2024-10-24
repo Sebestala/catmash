@@ -9,11 +9,7 @@ interface CatLikeBoxProps {
   onLike: () => void;
 }
 
-export default function CatLikeBox({
-  imageUrl,
-  catNumber,
-  onLike,
-}: CatLikeBoxProps) {
+export function CatLikeBox({ imageUrl, catNumber, onLike }: CatLikeBoxProps) {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = () => {
