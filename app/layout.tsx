@@ -37,22 +37,18 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): React.ReactElement {
   return (
     <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CatProvider>
-          <header className="fixed top-0 z-50 w-full">
-            <TopCatBar />
-          </header>
-          <main className="mt-28 py-4 md:mt-20 lg:mt-24 lg:py-8">
+          <TopCatBar />
+          <main className="bg-pink overflow-hidden py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
             {children}
           </main>
-          <footer>
-            <BottomBarNavigation />
-          </footer>
+          <BottomBarNavigation />
         </CatProvider>
       </body>
     </html>

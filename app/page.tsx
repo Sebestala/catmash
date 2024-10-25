@@ -45,7 +45,7 @@ export default function Home(): React.ReactElement {
   }
 
   return (
-    <div className="px-6 sm:px-12 md:px-20 lg:px-28 xl:px-64">
+    <div className="px-6 pb-12 sm:px-12 md:px-20 lg:px-28 xl:px-64">
       <div className="grid grid-cols-2 gap-4 sm:gap-12 md:gap-20">
         <AnimatePresence>
           {!isLoading && (
