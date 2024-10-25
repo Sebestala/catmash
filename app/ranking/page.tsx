@@ -21,8 +21,8 @@ export default function RankingPage(): React.ReactElement | null {
   if (!sortedCats || sortedCats.length === 0) return null;
 
   return (
-    <div className="top-4 space-y-4 px-6 py-4 md:space-y-8">
-      <div className="top-8 grid grid-cols-1 items-end gap-4 sm:gap-6 md:grid-cols-3 md:gap-8">
+    <div className="top-4 space-y-4 px-6 py-4">
+      <div className="top-8 grid grid-cols-1 items-end gap-4 md:grid-cols-3">
         <div className="order-2 md:order-1">
           <RankingCard
             key={sortedCats[1].id}
@@ -51,7 +51,7 @@ export default function RankingPage(): React.ReactElement | null {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
         {sortedCats.slice(3).map((cat, index) => (
           <RankingCard
             key={cat.id}

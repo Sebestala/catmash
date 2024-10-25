@@ -17,5 +17,5 @@ export default function RankingLayout({
 }: {
   children: React.ReactNode;
 }): JSX.Element {
-  return <>{children}</>;
+  return <div className="-mt-12 md:-mt-6 lg:-mt-10">{children}</div>;
 }
