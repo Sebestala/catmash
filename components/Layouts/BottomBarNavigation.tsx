@@ -12,7 +12,7 @@ export function BottomBarNavigation(): React.ReactElement {
 
   const handleClick = () => {
     if (pathname === "/") {
-      router.push("/classement");
+      router.push("/ranking");
     } else {
       router.push("/");
     }

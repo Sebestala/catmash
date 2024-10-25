@@ -4,10 +4,15 @@ interface RankingCardProps {
   imageUrl: string;
   score: number;
   rank: number;
-  name: string;
+  index: number;
 }
 
-export function RankingCard({ imageUrl, score, rank, name }: RankingCardProps) {
+export function RankingCard({
+  imageUrl,
+  score,
+  rank,
+  index,
+}: RankingCardProps) {
   const aspectRatio =
     rank === 1
       ? "aspect-[1.51]"
@@ -56,7 +61,7 @@ export function RankingCard({ imageUrl, score, rank, name }: RankingCardProps) {
         </div>
       </div>
       <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center">
-        <h2 className="mb-1 text-lg font-semibold text-white">{name}</h2>
+        <h2 className="mb-1 text-lg font-semibold text-white">Chat {index}</h2>
         <p className="text-sm italic text-white">Score: {score}pts</p>
       </div>
     </div>

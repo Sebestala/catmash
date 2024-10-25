@@ -5,11 +5,17 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 interface CatLikeBoxProps {
   imageUrl: string;
-  catNumber: 1 | 2;
+  catNumber: number;
   onLike: () => void;
+  position: "left" | "right";
 }
 
-export function CatLikeBox({ imageUrl, catNumber, onLike }: CatLikeBoxProps) {
+export function CatLikeBox({
+  imageUrl,
+  catNumber,
+  onLike,
+  position,
+}: CatLikeBoxProps) {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = () => {
@@ -29,7 +35,7 @@ export function CatLikeBox({ imageUrl, catNumber, onLike }: CatLikeBoxProps) {
         opacity: 0,
         scale: 0.8,
         transform:
-          catNumber === 1
+          position === "left"
             ? "translateX(-70px) translateY(-70px)"
             : "translateX(70px) translateY(-70px)",
       }}
@@ -42,7 +48,7 @@ export function CatLikeBox({ imageUrl, catNumber, onLike }: CatLikeBoxProps) {
         opacity: 0,
         scale: 0.8,
         transform:
-          catNumber === 1
+          position === "left"
             ? "translateX(-70px) translateY(-70px)"
             : "translateX(70px) translateY(-70px)",
       }}

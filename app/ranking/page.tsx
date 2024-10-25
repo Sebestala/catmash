@@ -3,7 +3,7 @@
 import { RankingCard } from "@/components/RankingCard";
 import { useCatContext } from "@/context/CatContext";
 
-export default function ClassementPage() {
+export default function RankingPage() {
   const { cats } = useCatContext();
 
   const sortedCats = [...cats].sort((a, b) => b.score - a.score);
@@ -18,21 +18,21 @@ export default function ClassementPage() {
           imageUrl={sortedCats[1].url}
           score={sortedCats[1].score}
           rank={2}
-          name={`Chat ${2}`}
+          index={sortedCats[1].index}
         />
         <RankingCard
           key={sortedCats[0].id}
           imageUrl={sortedCats[0].url}
           score={sortedCats[0].score}
           rank={1}
-          name={`Chat ${1}`}
+          index={sortedCats[0].index}
         />
         <RankingCard
           key={sortedCats[2].id}
           imageUrl={sortedCats[2].url}
           score={sortedCats[2].score}
           rank={3}
-          name={`Chat ${3}`}
+          index={sortedCats[2].index}
         />
       </div>
       <div className="grid grid-cols-4 md:gap-8">
@@ -42,7 +42,7 @@ export default function ClassementPage() {
             imageUrl={cat.url}
             score={cat.score}
             rank={index + 4}
-            name={`Chat ${index + 4}`}
+            index={cat.index}
           />
         ))}
       </div>

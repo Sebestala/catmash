@@ -36,9 +36,10 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
       .then((response) => response.json())
       .then((data: { images: Cat[] }) => {
         setCats(
-          data.images.map((cat: Cat) => ({
+          data.images.map((cat: Cat, index: number) => ({
             ...cat,
             score: 0,
+            index: index + 1,
           })),
         );
       })

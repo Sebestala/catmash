@@ -42,14 +42,16 @@ export default function Home() {
             <>
               <CatLikeBox
                 imageUrl={pair[0].url}
-                catNumber={1}
+                catNumber={pair[0].index}
                 onLike={() => handleVote(pair[0].id)}
+                position="left"
               />
 
               <CatLikeBox
                 imageUrl={pair[1].url}
-                catNumber={2}
+                catNumber={pair[1].index}
                 onLike={() => handleVote(pair[1].id)}
+                position="right"
               />
             </>
           )}
