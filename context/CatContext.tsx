@@ -61,11 +61,13 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
       .then((response) => response.json())
       .then((data: { images: Cat[] }) => {
         setCats(
-          data.images.map((cat: Cat, index: number) => ({
-            ...cat,
-            score: 0,
-            index: index + 1,
-          })),
+          data.images.map(
+            (cat: Cat, index: number): Cat => ({
+              ...cat,
+              score: 0,
+              catNumber: index + 1,
+            }),
+          ),
         );
       })
       .catch((error) => {
