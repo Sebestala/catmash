@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import ResponsiveCatImage from "@/components/ResponsiveCatImage";
 import { CatProvider } from "@/context/CatContext";
 import { BottomBarNavigation } from "@/components/Layouts/BottomBarNavigation";
 import TopCatBar from "@/components/Layouts/TopCatBar";
