@@ -4,6 +4,7 @@ import "./globals.css";
 import ResponsiveCatImage from "@/components/ResponsiveCatImage";
 import { CatProvider } from "@/context/CatContext";
 import { BottomBarNavigation } from "@/components/Layouts/BottomBarNavigation";
+import TopCatBar from "@/components/Layouts/TopCatBar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,12 +34,7 @@ export default function RootLayout({
       >
         <CatProvider>
           <header className="fixed top-0 z-50 w-full">
-            <div className="flex w-full flex-col items-center justify-center space-y-2 p-4">
-              <ResponsiveCatImage />
-              <h1 className="text-md flex items-center justify-center font-bold text-blue-900 md:text-lg lg:text-xl">
-                CATMASH
-              </h1>
-            </div>
+            <TopCatBar />
           </header>
           <main>{children}</main>
           <footer>
