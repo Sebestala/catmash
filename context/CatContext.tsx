@@ -5,7 +5,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 
 interface CatContextType {
   cats: Cat[];
-  totalMatches: number;
+  matchesPlayed: number;
   incrementScore: (id: string) => void;
   getRandomPair: () => [Cat, Cat] | null;
   isFetching: boolean;
@@ -27,7 +27,7 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cats, setCats] = useState<Cat[]>([]);
-  const [totalMatches, setTotalMatches] = useState(0);
+  const [matchesPlayed, setMatchesPlayed] = useState(0);
   const [isFetching, setIsFetching] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -55,7 +55,7 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
         cat.id === id ? { ...cat, score: cat.score + 1 } : cat,
       ),
     );
-    setTotalMatches((prev) => prev + 1);
+    setMatchesPlayed((prev) => prev + 1);
   };
 
   const getRandomPair = (): [Cat, Cat] | null => {
@@ -68,7 +68,7 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
     <CatContext.Provider
       value={{
         cats,
-        totalMatches,
+        matchesPlayed,
         incrementScore,
         getRandomPair,
         isFetching,
