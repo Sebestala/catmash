@@ -35,7 +35,7 @@ export default function Home() {
   }
 
   return (
-    <div className="mt-28 px-6 py-4 sm:px-12 md:mt-20 md:px-20 lg:mt-24 lg:px-28 lg:py-8 xl:px-64">
+    <div className="px-6 sm:px-12 md:px-20 lg:px-28 xl:px-64">
       <div className="grid grid-cols-2 gap-4 sm:gap-12 md:gap-20">
         <AnimatePresence>
           {!isLoading && (

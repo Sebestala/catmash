@@ -35,7 +35,9 @@ export default function RootLayout({
           <header className="fixed top-0 z-50 w-full">
             <TopCatBar />
           </header>
-          <main>{children}</main>
+          <main className="mt-28 py-4 md:mt-20 lg:mt-24 lg:py-8">
+            {children}
+          </main>
           <footer>
             <BottomBarNavigation />
           </footer>
