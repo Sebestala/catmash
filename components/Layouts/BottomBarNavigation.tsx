@@ -3,12 +3,23 @@
 import Link from "next/link";
 import { ChevronUp } from "lucide-react";
 import { useCatContext } from "@/context/CatContext";
+import { usePathname, useRouter } from "next/navigation";
 
 export function BottomBarNavigation(): React.ReactElement {
   const { matchesPlayed } = useCatContext();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClick = () => {
+    if (pathname === "/") {
+      router.push("/classement");
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
-    <nav className="flex justify-center">
+    <nav className="flex justify-center" onClick={handleClick}>
       <div className="fixed -bottom-0.5 z-50 rounded-t-lg border border-blue-950 bg-white md:w-1/2 md:max-w-md">
         <Link href="/" className="h-full w-full">
           <div className="flex flex-col items-center justify-center space-y-0.5 px-4 py-1 md:space-y-2">
