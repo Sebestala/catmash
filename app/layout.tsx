@@ -35,12 +35,12 @@ export default function RootLayout({
         <header className="fixed top-0 z-50 w-full">
           <div className="flex w-full flex-col items-center justify-center space-y-2 p-4">
             <ResponsiveCatImage />
-            <h1 className="flex items-center justify-center text-lg font-bold text-blue-900 md:text-xl lg:text-2xl">
+            <h1 className="text-md flex items-center justify-center font-bold text-blue-900 md:text-lg lg:text-xl">
               CATMASH
             </h1>
           </div>
         </header>
-        <main className="container mx-auto mt-28 flex-grow px-4">
+        <main>
           <CatProvider>{children}</CatProvider>
         </main>
         <footer>

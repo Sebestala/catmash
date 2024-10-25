@@ -30,7 +30,7 @@ export function CatLikeBox({ imageUrl, catNumber, onLike }: CatLikeBoxProps) {
         scale: 0.8,
         transform:
           catNumber === 1
-            ? "translateX(-70px) translateY-(70px)"
+            ? "translateX(-70px) translateY(-70px)"
             : "translateX(70px) translateY(-70px)",
       }}
       animate={{
@@ -50,7 +50,7 @@ export function CatLikeBox({ imageUrl, catNumber, onLike }: CatLikeBoxProps) {
     >
       <div
         onClick={handleClick}
-        className={`flex aspect-[1.5] transform cursor-pointer flex-col items-center justify-between rounded-lg p-2 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl md:p-4 ${isLiked ? "bg-blue-100" : "bg-blue-50"} hover:bg-blue-50`}
+        className={`flex aspect-[1.5] transform cursor-pointer flex-col items-center justify-between rounded-lg p-2 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl md:p-4 2xl:p-8 ${isLiked ? "bg-blue-100" : "bg-blue-50"} hover:bg-blue-50`}
       >
         <div className="relative h-full w-full overflow-hidden rounded-lg pt-[100%]">
           <Image

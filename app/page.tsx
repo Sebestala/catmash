@@ -34,11 +34,9 @@ export default function Home() {
     );
   }
 
-  console.log(isLoading);
-
   return (
-    <div className="container mx-auto px-1 py-4 md:px-8 lg:py-8">
-      <div className="grid grid-cols-2 gap-4 md:gap-16">
+    <div className="mt-28 px-6 py-4 sm:px-12 md:mt-20 md:px-20 lg:mt-24 lg:px-28 lg:py-8 xl:px-64">
+      <div className="grid grid-cols-2 gap-4 sm:gap-12 md:gap-20">
         <AnimatePresence>
           {!isLoading && (
             <>

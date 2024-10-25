@@ -18,7 +18,7 @@ export default function ResponsiveCatImage() {
 
   return (
     <motion.div
-      className="relative h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16"
+      className="relative h-8 w-8 md:h-10 md:w-10 xl:h-14 xl:w-14"
       variants={bounceVariants}
       initial="initial"
       animate="animate"
