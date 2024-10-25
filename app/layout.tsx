@@ -21,6 +21,18 @@ export const metadata: Metadata = {
   description: "Tournament of pretty cats",
 };
 
+/**
+ * RootLayout component provides the root structure for the "Catmash" application,
+ * including metadata, font settings, and layout structure.
+ *
+ * @param {Readonly<{ children: React.ReactNode }>} children - The content to be displayed within the layout.
+ * @returns {JSX.Element} The rendered root layout component.
+ *
+ * Features:
+ * - Wraps the application in `CatProvider` to supply cat-related context.
+ * - Includes a fixed top navigation bar (`TopCatBar`) and a bottom navigation bar (`BottomBarNavigation`).
+ * - Provides padding adjustments to ensure content is spaced appropriately from fixed headers and footers.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

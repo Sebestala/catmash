@@ -3,6 +3,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+/**
+ * ResponsiveCatImage component displays a bouncing cat image with responsive sizing.
+ *
+ * @returns {JSX.Element} The rendered responsive cat image component.
+ */
 export default function ResponsiveCatImage() {
   const bounceVariants = {
     initial: { scale: 1 },

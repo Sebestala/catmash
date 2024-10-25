@@ -1,18 +1,27 @@
+import { Cat } from "@/models/Cat";
 import Image from "next/image";
 
-interface RankingCardProps {
-  imageUrl: string;
-  score: number;
+interface RankingCardProps extends Partial<Cat> {
   rank: number;
-  index: number;
 }
 
+/**
+ * RankingCard component displays a ranked cat card with a specific border color and aspect ratio,
+ * depending on the cat's rank. It shows the cat's image, rank, name, and score.
+ *
+ * @param {string} url - The URL of the cat image to display.
+ * @param {number} score - The score of the cat.
+ * @param {number} rank - The rank position of the cat.
+ * @param {number} [catNumber] - The identifier or number associated with the cat.
+ *
+ * @returns {React.ReactElement} The rendered ranking card component.
+ */
 export function RankingCard({
-  imageUrl,
+  url,
   score,
   rank,
-  index,
-}: RankingCardProps) {
+  catNumber,
+}: RankingCardProps): React.ReactElement {
   const aspectRatio =
     rank === 1
       ? "aspect-[1.51]"
@@ -45,7 +54,7 @@ export function RankingCard({
       className={`relative ${aspectRatio} border-2 ${borderColor} overflow-hidden rounded-xl border`}
     >
       <Image
-        src={imageUrl}
+        src={url || ""}
         alt={`Chat ${rank}`}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className={`rounded-lg object-cover`}
@@ -61,7 +70,9 @@ export function RankingCard({
         </div>
       </div>
       <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center">
-        <h2 className="mb-1 text-lg font-semibold text-white">Chat {index}</h2>
+        <h2 className="mb-1 text-lg font-semibold text-white">
+          Chat {catNumber}
+        </h2>
         <p className="text-sm italic text-white">Score: {score}pts</p>
       </div>
     </div>

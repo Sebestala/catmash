@@ -15,6 +15,13 @@ interface CatContextType {
 
 const CatContext = createContext<CatContextType | undefined>(undefined);
 
+/**
+ * useCatContext custom hook to access the Cat context values.
+ *
+ * @returns {CatContextType} The cat context values, including cats, matchesPlayed, incrementScore, and more.
+ *
+ * @throws {Error} If used outside of a CatProvider, an error will be thrown.
+ */
 export const useCatContext = () => {
   const context = useContext(CatContext);
   if (!context) {
@@ -23,6 +30,24 @@ export const useCatContext = () => {
   return context;
 };
 
+/**
+ * CatProvider component provides context for managing cat data, match statistics, and loading states.
+ *
+ * @param {React.ReactNode} children - The child components to be wrapped by the provider.
+ * @returns {JSX.Element} The rendered provider component with context values.
+ *
+ * Context Values:
+ * - cats (Cat[]): Array of cat data, each with an ID, URL, score, and catNumber.
+ * - matchesPlayed (number): Total number of matches or votes made.
+ * - incrementScore (function): Function to increment the score of a specific cat by ID.
+ * - getRandomPair (function): Function to fetch a random pair of cats for voting.
+ * - isFetching (boolean): Indicates if the cat data is being fetched from the API.
+ * - isLoading (boolean): Indicates if a vote action is in progress.
+ * - setIsLoading (function): Function to update the `isLoading` state.
+ *
+ * Usage:
+ * Wrap your components with CatProvider to access and manage cat data and match statistics.
+ */
 export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {

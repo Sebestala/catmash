@@ -1,5 +1,13 @@
 import ResponsiveCatImage from "@/components/ResponsiveCatImage";
 
+/**
+ * TopCatBar component displays a top bar with the Catmash title and a responsive cat image.
+ *
+ * @returns {React.ReactElement} The rendered top bar component.
+ *
+ * Features:
+ * - Centers the `CATMASH` title and an image using the `ResponsiveCatImage` component.
+ */
 export default function TopCatBar(): React.ReactElement {
   return (
     <div className="flex w-full items-center justify-center space-y-2 p-2">

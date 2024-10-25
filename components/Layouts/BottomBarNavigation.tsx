@@ -5,6 +5,16 @@ import { ChevronUp } from "lucide-react";
 import { useCatContext } from "@/context/CatContext";
 import { usePathname, useRouter } from "next/navigation";
 
+/**
+ * BottomBarNavigation component provides a fixed bottom navigation bar
+ * that allows users to toggle between the home and ranking pages.
+ *
+ * @returns {React.ReactElement} The rendered bottom navigation bar component.
+ *
+ * Features:
+ * - Shows the total number of matches played using data from `CatContext`.
+ * - Changes the navigation destination based on the current path:
+ */
 export function BottomBarNavigation(): React.ReactElement {
   const { matchesPlayed } = useCatContext();
   const router = useRouter();

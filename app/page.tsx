@@ -6,7 +6,17 @@ import { useCatContext } from "@/context/CatContext";
 import { Cat } from "@/models/Cat";
 import { AnimatePresence } from "framer-motion";
 
-export default function Home() {
+/**
+ * Home component displays a pair of cats for voting, allowing users to increment the score of their preferred cat.
+ *
+ * @returns {JSX.Element} The rendered home component with two `CatLikeBox` components for voting.
+ *
+ * Features:
+ * - Fetches a random pair of cats from the `CatContext` and displays them side-by-side.
+ * - Handles vote actions by updating the score of the selected cat and fetching a new pair.
+ * - Shows a loading spinner while fetching new cats or if data is being refreshed.
+ */
+export default function Home(): React.ReactElement {
   const { getRandomPair, incrementScore, isFetching, isLoading, setIsLoading } =
     useCatContext();
   const [pair, setPair] = useState<[Cat, Cat] | null>(null);
@@ -42,14 +52,14 @@ export default function Home() {
             <>
               <CatLikeBox
                 imageUrl={pair[0].url}
-                catNumber={pair[0].index}
+                catNumber={pair[0].catNumber}
                 onLike={() => handleVote(pair[0].id)}
                 position="left"
               />
 
               <CatLikeBox
                 imageUrl={pair[1].url}
-                catNumber={pair[1].index}
+                catNumber={pair[1].catNumber}
                 onLike={() => handleVote(pair[1].id)}
                 position="right"
               />

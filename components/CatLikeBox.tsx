@@ -10,12 +10,23 @@ interface CatLikeBoxProps {
   position: "left" | "right";
 }
 
+/**
+ * CatLikeBox component displays an interactive image box for a cat, allowing users to "like" the cat.
+ * When liked, it shows a brief animation before triggering the onLike action.
+ *
+ * @param {string} imageUrl - The URL of the cat image to display.
+ * @param {number} catNumber - The unique number associated with the cat.
+ * @param {function} onLike - Callback function triggered when the cat is liked.
+ * @param {"left" | "right"} position - Position of the box (used for initial animation direction).
+ *
+ * @returns {JSX.Element} The rendered CatLikeBox component.
+ */
 export function CatLikeBox({
   imageUrl,
   catNumber,
   onLike,
   position,
-}: CatLikeBoxProps) {
+}: CatLikeBoxProps): React.ReactElement {
   const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = () => {
