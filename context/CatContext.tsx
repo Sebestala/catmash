@@ -57,7 +57,7 @@ export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetch("https://data.latelier.co/cats.json")
+    fetch("http://localhost:3001/api/cats")
       .then((response) => response.json())
       .then((data: { images: Cat[] }) => {
         setCats(
