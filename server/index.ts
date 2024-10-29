@@ -15,3 +15,5 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", catRoutes);
+
+app.use(express.static("public"));
