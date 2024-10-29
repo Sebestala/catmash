@@ -1,10 +1,10 @@
 {
   "name": "catmash-server",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "main": "dist/index.ts",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev index.ts",
     "build": "tsc"
   },
   "dependencies": {
