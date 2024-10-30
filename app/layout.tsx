@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { CatProvider } from "@/context/CatContext";
 import { BottomBarNavigation } from "@/components/Layouts/BottomBarNavigation";
-import TopCatBar from "@/components/Layouts/TopCatBar";
+import { TopCatBar } from "@/components/Layouts/TopCatBar";
 import { fetchCats } from "./lib/api";
 
 const geistSans = localFont({

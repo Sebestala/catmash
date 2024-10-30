@@ -8,7 +8,7 @@ import ResponsiveCatImage from "@/components/ResponsiveCatImage";
  * Features:
  * - Centers the `CATMASH` title and an image using the `ResponsiveCatImage` component.
  */
-export default function TopCatBar(): React.ReactElement {
+export function TopCatBar(): React.ReactElement {
   return (
     <header className="fixed left-1/2 top-0 z-50 -translate-x-1/2">
       <div className="flex w-full items-center justify-center space-y-2 p-2">
