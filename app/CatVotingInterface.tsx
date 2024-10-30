@@ -5,10 +5,10 @@ import { CatLikeBox } from "@/components/CatLikeBox";
 import { useCatContext } from "@/context/CatContext";
 import { Cat } from "@/models/Cat";
 import { AnimatePresence } from "framer-motion";
+import { updateCatScore } from "./lib/api";
 
 export function CatVotingInterface(): React.ReactElement {
-  const { getRandomPair, incrementScore, isFetching, isLoading, setIsLoading } =
-    useCatContext();
+  const { getRandomPair, isLoading, setIsLoading } = useCatContext();
   const [pair, setPair] = useState<[Cat, Cat] | null>(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export function CatVotingInterface(): React.ReactElement {
   }, [getRandomPair]);
 
   const handleVote = (id: string) => {
-    incrementScore(id);
+    updateCatScore(id);
     setPair(getRandomPair());
     setIsLoading(true);
     const timeoutId = setTimeout(() => {
@@ -26,7 +26,7 @@ export function CatVotingInterface(): React.ReactElement {
     return () => clearTimeout(timeoutId);
   };
 
-  if (!pair || isFetching) {
+  if (!pair) {
     return (
       <div className="-mt-32 flex h-screen items-center justify-center">
         <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-t-2 border-blue-800"></div>

@@ -21,3 +21,15 @@ export async function fetchCats(): Promise<{
   }
   return response.json();
 }
+
+export async function updateCatScore(id: string): Promise<void> {
+  const response = await fetch(`http://localhost:3001/api/cats/${id}/score`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to update cat score");
+  }
+}
