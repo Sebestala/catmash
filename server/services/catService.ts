@@ -58,8 +58,27 @@ export const getCats = async (): Promise<{
 }> => {
   const { data, error } = await supabase.from("cats").select("*");
 
-  const catsSorted = data?.sort((a, b) => b.score - a.score);
-  const matchesPlayed = catsSorted?.reduce((acc, cat) => acc + cat.score, 0);
-  if (error) throw error;
-  return { cats: catsSorted as Cat[], matchesPlayed };
+  if (error) {
+    console.error("Error fetching cats:", error);
+    throw error;
+  }
+
+  if (!data) {
+    throw new Error("No data returned from Supabase");
+  }
+
+  const catsSorted = data.sort((a, b) => b.score - a.score);
+  const matchesPlayed = catsSorted.reduce((acc, cat) => acc + cat.score, 0);
+
+  return { cats: catsSorted, matchesPlayed };
+};
+
+export const updateCatScore = async (id: string): Promise<void> => {
+  const { data, error } = await supabase.rpc("increment_score", { row_id: id });
+  console.log("data", data);
+  console.log("error", error);
+  if (error) {
+    console.error("Error updating cat score:", error);
+    throw error;
+  }
 };

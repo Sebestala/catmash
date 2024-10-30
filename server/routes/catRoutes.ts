@@ -1,5 +1,9 @@
 import express from "express";
-import { fetchAndStoreCats, getCats } from "../controllers/catController";
+import {
+  fetchAndStoreCats,
+  getCats,
+  updateCatScore,
+} from "../controllers/catController";
 
 const router = express.Router();
 
@@ -9,3 +13,8 @@ export const fetchAndStoreCatsRoute = router.get(
 );
 
 export const getCatsRoute = router.get("/cats", getCats);
+
+export const updateCatScoreRoute = router.put(
+  "/cats/:id/score",
+  updateCatScore,
+);

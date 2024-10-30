@@ -18,3 +18,14 @@ export const getCats = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error fetching cats" });
   }
 };
+
+export const updateCatScore = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    await catService.updateCatScore(id);
+    res.status(200).json({ message: "Cat score updated successfully" });
+  } catch {
+    res.status(500).json({ error: "Error updating cat score" });
+  }
+};
