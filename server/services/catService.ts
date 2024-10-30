@@ -15,7 +15,11 @@ export const fetchAndStoreCats = async () => {
     }
     const data: CatWithImages = await response.json();
     const cats = data.images;
-    console.log(`${cats.length} chats récupérés depuis l'API`);
+
+    cats.forEach((cat, index) => {
+      cat.catNumber = index + 1;
+      cat.score = 0;
+    });
 
     for (const cat of cats) {
       const { data: existingCat, error: fetchError } = await supabase
@@ -28,7 +32,7 @@ export const fetchAndStoreCats = async () => {
         console.error("Error checking cat existence:", fetchError);
         continue;
       }
-      console.log("existingCat : ");
+
       if (!existingCat) {
         const { error: insertError } = await supabase.from("cats").insert({
           id: cat.id,
