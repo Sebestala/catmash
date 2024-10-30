@@ -54,7 +54,6 @@ export const fetchAndStoreCats = async () => {
 
 export const getCats = async (): Promise<{
   cats: Cat[];
-  matchesPlayed: number;
 }> => {
   const { data, error } = await supabase.from("cats").select("*");
 
@@ -68,9 +67,8 @@ export const getCats = async (): Promise<{
   }
 
   const catsSorted = data.sort((a, b) => b.score - a.score);
-  const matchesPlayed = catsSorted.reduce((acc, cat) => acc + cat.score, 0);
 
-  return { cats: catsSorted, matchesPlayed };
+  return { cats: catsSorted };
 };
 
 export const updateCatScore = async (id: string): Promise<void> => {
@@ -79,4 +77,23 @@ export const updateCatScore = async (id: string): Promise<void> => {
     console.error("Error updating cat score:", error);
     throw error;
   }
+};
+
+export const getMatchesPlayed = async (): Promise<{
+  matchesPlayed: number;
+}> => {
+  const { data, error } = await supabase.from("cats").select("*");
+
+  if (error) {
+    console.error("Error fetching cats:", error);
+    throw error;
+  }
+
+  if (!data) {
+    throw new Error("No data returned from Supabase");
+  }
+
+  const matchesPlayed = data.reduce((acc, cat) => acc + cat.score, 0);
+
+  return { matchesPlayed };
 };

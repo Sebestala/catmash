@@ -11,9 +11,20 @@ export async function fetchAndStoreCats() {
 
 export async function fetchCats(): Promise<{
   cats: Cat[];
-  matchesPlayed: number;
 }> {
   const response = await fetch("http://localhost:3001/api/cats", {
+    next: { revalidate: 0 },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch cats");
+  }
+  return response.json();
+}
+
+export async function fetchMatchesPlayed(): Promise<{
+  matchesPlayed: number;
+}> {
+  const response = await fetch("http://localhost:3001/api/cats/matchesPlayed", {
     next: { revalidate: 0 },
   });
   if (!response.ok) {

@@ -3,6 +3,7 @@ import {
   fetchAndStoreCats,
   getCats,
   updateCatScore,
+  getMatchesPlayed,
 } from "../controllers/catController";
 
 const router = express.Router();
@@ -17,4 +18,9 @@ export const getCatsRoute = router.get("/cats", getCats);
 export const updateCatScoreRoute = router.put(
   "/cats/:id/score",
   updateCatScore,
+);
+
+export const getMatchesPlayedRoute = router.get(
+  "/cats/matchesPlayed",
+  getMatchesPlayed,
 );

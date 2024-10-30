@@ -6,6 +6,7 @@ import {
   fetchAndStoreCatsRoute,
   getCatsRoute,
   updateCatScoreRoute,
+  getMatchesPlayedRoute,
 } from "./routes/catRoutes";
 import cors from "cors";
 
@@ -31,5 +32,6 @@ app.get("/", (req, res) => {
 app.use("/api", fetchAndStoreCatsRoute);
 app.use("/api", getCatsRoute);
 app.use("/api", updateCatScoreRoute);
+app.use("/api", getMatchesPlayedRoute);
 
 app.use(express.static("public"));

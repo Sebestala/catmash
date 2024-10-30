@@ -29,3 +29,12 @@ export const updateCatScore = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error updating cat score" });
   }
 };
+
+export const getMatchesPlayed = async (req: Request, res: Response) => {
+  try {
+    const matchesPlayed = await catService.getMatchesPlayed();
+    res.status(200).json(matchesPlayed);
+  } catch {
+    res.status(500).json({ error: "Error fetching matches played" });
+  }
+};

@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { BottomBarNavigation } from "@/components/Layouts/BottomBarNavigation";
 import { TopCatBar } from "@/components/Layouts/TopCatBar";
-import { fetchCats } from "./lib/api";
+import { fetchMatchesPlayed } from "./lib/api";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,7 +38,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>): Promise<React.ReactElement> {
-  const initialCats = await fetchCats();
+  const initialMatchesPlayed = await fetchMatchesPlayed();
   return (
     <html lang="fr">
       <body
@@ -48,7 +48,9 @@ export default async function RootLayout({
         <main className="bg-pink overflow-hidden py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
           {children}
         </main>
-        <BottomBarNavigation initialMatchesPlayed={initialCats.matchesPlayed} />
+        <BottomBarNavigation
+          initialMatchesPlayed={initialMatchesPlayed.matchesPlayed}
+        />
       </body>
     </html>
   );
