@@ -74,9 +74,7 @@ export const getCats = async (): Promise<{
 };
 
 export const updateCatScore = async (id: string): Promise<void> => {
-  const { data, error } = await supabase.rpc("increment_score", { row_id: id });
-  console.log("data", data);
-  console.log("error", error);
+  const { error } = await supabase.rpc("increment_score", { row_id: id });
   if (error) {
     console.error("Error updating cat score:", error);
     throw error;
