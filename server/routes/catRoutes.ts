@@ -1,8 +1,9 @@
 import express from "express";
-import { getCats } from "../controllers/catController";
+import { fetchAndStoreCats } from "../controllers/catController";
 
 const router = express.Router();
 
-router.get("/cats", getCats);
-
-export default router;
+export const fetchAndStoreCatsRoute = router.get(
+  "/cats/fetch",
+  fetchAndStoreCats,
+);

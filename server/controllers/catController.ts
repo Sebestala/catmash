@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { fetchCats } from "../services/catService";
+import * as catService from "../services/catService";
 
-export const getCats = async (req: Request, res: Response) => {
+export const fetchAndStoreCats = async (req: Request, res: Response) => {
   try {
-    const cats = await fetchCats();
-    res.json(cats);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching cats", error });
+    await catService.fetchAndStoreCats();
+    res.status(200).json({ message: "Cats fetched and stored successfully" });
+  } catch {
+    res.status(500).json({ error: "Error fetching and storing cats" });
   }
 };
