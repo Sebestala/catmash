@@ -52,10 +52,14 @@ export const fetchAndStoreCats = async () => {
   }
 };
 
-export const getCats = async (): Promise<Cat[]> => {
+export const getCats = async (): Promise<{
+  cats: Cat[];
+  matchesPlayed: number;
+}> => {
   const { data, error } = await supabase.from("cats").select("*");
 
   const catsSorted = data?.sort((a, b) => b.score - a.score);
+  const matchesPlayed = catsSorted?.reduce((acc, cat) => acc + cat.score, 0);
   if (error) throw error;
-  return catsSorted as Cat[];
+  return { cats: catsSorted as Cat[], matchesPlayed };
 };

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ChevronUp } from "lucide-react";
-import { useCatContext } from "@/context/CatContext";
 import { usePathname, useRouter } from "next/navigation";
 
 /**
@@ -15,8 +14,11 @@ import { usePathname, useRouter } from "next/navigation";
  * - Shows the total number of matches played using data from `CatContext`.
  * - Changes the navigation destination based on the current path:
  */
-export function BottomBarNavigation(): React.ReactElement {
-  const { matchesPlayed } = useCatContext();
+export function BottomBarNavigation({
+  matchesPlayed,
+}: {
+  matchesPlayed: number;
+}): React.ReactElement {
   const router = useRouter();
   const pathname = usePathname();
 
