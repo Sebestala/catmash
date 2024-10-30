@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
@@ -26,15 +27,25 @@ export function CatVotingInterface({
     setPair(getRandomPair());
   }, [getRandomPair]);
 
-  const handleVote = (id: string) => {
-    updateCatScore(id);
-    setPair(getRandomPair());
-    setIsLoading(true);
-    const timeoutId = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
+  const handleVote = async (id: string) => {
+    try {
+      await updateCatScore(id);
+      if (
+        typeof window !== "undefined" &&
+        (window as any).incrementMatchesPlayed
+      ) {
+        (window as any).incrementMatchesPlayed();
+      }
+      setPair(getRandomPair());
+      setIsLoading(true);
+      const timeoutId = setTimeout(() => {
+        setIsLoading(false);
+      }, 300);
 
-    return () => clearTimeout(timeoutId);
+      return () => clearTimeout(timeoutId);
+    } catch (error) {
+      console.error("Failed to update cat score:", error);
+    }
   };
 
   if (!pair) {

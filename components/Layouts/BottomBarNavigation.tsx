@@ -3,24 +3,45 @@
 import Link from "next/link";
 import { ChevronUp } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { fetchCats } from "@/app/lib/api";
 
-/**
- * BottomBarNavigation component provides a fixed bottom navigation bar
- * that allows users to toggle between the home and ranking pages.
- *
- * @returns {React.ReactElement} The rendered bottom navigation bar component.
- *
- * Features:
- * - Shows the total number of matches played using data from `CatContext`.
- * - Changes the navigation destination based on the current path:
- */
+interface BottomBarNavigationProps {
+  initialMatchesPlayed: number;
+}
+
 export function BottomBarNavigation({
-  matchesPlayed,
-}: {
-  matchesPlayed: number;
-}): React.ReactElement {
+  initialMatchesPlayed,
+}: BottomBarNavigationProps): React.ReactElement {
   const router = useRouter();
   const pathname = usePathname();
+  const [matchesPlayed, setMatchesPlayed] = useState(initialMatchesPlayed);
+
+  useEffect(() => {
+    const updateMatchesCount = async () => {
+      try {
+        const data = await fetchCats();
+        setMatchesPlayed(data.matchesPlayed);
+      } catch (error) {
+        console.error("Failed to fetch matches count:", error);
+      }
+    };
+
+    const intervalId = setInterval(updateMatchesCount, 10000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const incrementMatchesPlayed = () => {
+    setMatchesPlayed((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).incrementMatchesPlayed = incrementMatchesPlayed;
+    }
+  }, []);
 
   const handleClick = () => {
     if (pathname === "/") {

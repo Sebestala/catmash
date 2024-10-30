@@ -48,7 +48,7 @@ export default async function RootLayout({
         <main className="bg-pink overflow-hidden py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
           {children}
         </main>
-        <BottomBarNavigation matchesPlayed={initialCats.matchesPlayed} />
+        <BottomBarNavigation initialMatchesPlayed={initialCats.matchesPlayed} />
       </body>
     </html>
   );
