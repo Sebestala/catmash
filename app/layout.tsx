@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { CatProvider } from "@/context/CatContext";
 import { BottomBarNavigation } from "@/components/Layouts/BottomBarNavigation";
 import { TopCatBar } from "@/components/Layouts/TopCatBar";
 import { fetchCats } from "./lib/api";
@@ -45,13 +44,11 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <CatProvider initialCats={initialCats.cats}>
-          <TopCatBar />
-          <main className="bg-pink overflow-hidden py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
-            {children}
-          </main>
-          <BottomBarNavigation matchesPlayed={initialCats.matchesPlayed} />
-        </CatProvider>
+        <TopCatBar />
+        <main className="bg-pink overflow-hidden py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
+          {children}
+        </main>
+        <BottomBarNavigation matchesPlayed={initialCats.matchesPlayed} />
       </body>
     </html>
   );

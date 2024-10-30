@@ -1,15 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { CatLikeBox } from "@/components/CatLikeBox";
-import { useCatContext } from "@/context/CatContext";
 import { Cat } from "@/models/Cat";
 import { AnimatePresence } from "framer-motion";
 import { updateCatScore } from "./lib/api";
 
-export function CatVotingInterface(): React.ReactElement {
-  const { getRandomPair, isLoading, setIsLoading } = useCatContext();
+interface CatVotingInterfaceProps {
+  cats: Cat[];
+}
+
+export function CatVotingInterface({
+  cats,
+}: CatVotingInterfaceProps): React.ReactElement {
+  const [isLoading, setIsLoading] = useState(false);
   const [pair, setPair] = useState<[Cat, Cat] | null>(null);
+
+  const getRandomPair = useCallback((): [Cat, Cat] | null => {
+    if (cats.length < 2) return null;
+    const shuffled = [...cats].sort(() => 0.5 - Math.random());
+    return [shuffled[0], shuffled[1]];
+  }, [cats]);
 
   useEffect(() => {
     setPair(getRandomPair());
