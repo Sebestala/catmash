@@ -51,3 +51,11 @@ export const fetchAndStoreCats = async () => {
     throw error;
   }
 };
+
+export const getCats = async (): Promise<Cat[]> => {
+  const { data, error } = await supabase.from("cats").select("*");
+
+  const catsSorted = data?.sort((a, b) => b.score - a.score);
+  if (error) throw error;
+  return catsSorted as Cat[];
+};

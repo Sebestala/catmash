@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 // J'ai ajouté cette ligne ici pour que le serveur puisse lire les variables d'environnement AVANT d'importer les routes. C'était une erreur coriace...
 dotenv.config();
 import express from "express";
-import { fetchAndStoreCatsRoute } from "./routes/catRoutes";
+import { fetchAndStoreCatsRoute, getCatsRoute } from "./routes/catRoutes";
 import cors from "cors";
 
 const app = express();
@@ -25,5 +25,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", fetchAndStoreCatsRoute);
+app.use("/api", getCatsRoute);
 
 app.use(express.static("public"));

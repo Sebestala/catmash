@@ -1,14 +1,11 @@
 "use client";
 
 import { Cat } from "@/models/Cat";
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext } from "react";
 
 interface CatContextType {
   cats: Cat[];
-  matchesPlayed: number;
-  incrementScore: (id: string) => void;
   getRandomPair: () => [Cat, Cat] | null;
-  isFetching: boolean;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
 }
@@ -48,58 +45,32 @@ export const useCatContext = () => {
  * Usage:
  * Wrap your components with CatProvider to access and manage cat data and match statistics.
  */
-export const CatProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
-  const [cats, setCats] = useState<Cat[]>([]);
-  const [matchesPlayed, setMatchesPlayed] = useState(0);
-  const [isFetching, setIsFetching] = useState(true);
+export const CatProvider: React.FC<{
+  children: React.ReactNode;
+  initialCats: Cat[];
+}> = ({ children, initialCats }) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    fetch("http://localhost:3001/api/cats")
-      .then((response) => response.json())
-      .then((data: { images: Cat[] }) => {
-        setCats(
-          data.images.map(
-            (cat: Cat, index: number): Cat => ({
-              ...cat,
-              score: 0,
-              catNumber: index + 1,
-            }),
-          ),
-        );
-      })
-      .catch((error) => {
-        console.error("Error fetching cat data:", error);
-        setIsFetching(false);
-      })
-      .finally(() => setIsFetching(false));
-  }, []);
-
-  const incrementScore = (id: string) => {
-    setCats((prevCats) =>
-      prevCats.map((cat) =>
-        cat.id === id ? { ...cat, score: cat.score + 1 } : cat,
-      ),
-    );
-    setMatchesPlayed((prev) => prev + 1);
-  };
+  // const incrementScore = (id: string) => {
+  //   setCats((prevCats) =>
+  //     prevCats.map((cat) =>
+  //       cat.id === id ? { ...cat, score: cat.score + 1 } : cat,
+  //     ),
+  //   );
+  //   setMatchesPlayed((prev) => prev + 1);
+  // };
 
   const getRandomPair = (): [Cat, Cat] | null => {
-    if (cats.length < 2) return null;
-    const shuffled = [...cats].sort(() => 0.5 - Math.random());
+    if (initialCats.length < 2) return null;
+    const shuffled = [...initialCats].sort(() => 0.5 - Math.random());
     return [shuffled[0], shuffled[1]];
   };
 
   return (
     <CatContext.Provider
       value={{
-        cats,
-        matchesPlayed,
-        incrementScore,
+        cats: initialCats,
         getRandomPair,
-        isFetching,
         isLoading,
         setIsLoading,
       }}

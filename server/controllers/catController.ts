@@ -9,3 +9,12 @@ export const fetchAndStoreCats = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error fetching and storing cats" });
   }
 };
+
+export const getCats = async (req: Request, res: Response) => {
+  try {
+    const cats = await catService.getCats();
+    res.status(200).json(cats);
+  } catch {
+    res.status(500).json({ error: "Error fetching cats" });
+  }
+};
