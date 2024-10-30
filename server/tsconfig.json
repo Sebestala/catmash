@@ -1,11 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2017",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./",
+    "rootDir": "../",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "include": ["./index.ts"]
+  "include": [
+    "./index.ts",
+    "./config/**/*.ts",
+    "./routes/**/*.ts",
+    "./services/**/*.ts",
+    "./controllers/**/*.ts"
+  ]
 }
