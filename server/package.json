@@ -1,15 +1,18 @@
 {
   "name": "catmash-server",
   "version": "1.0.0",
-  "main": "dist/index.ts",
+  "main": "dist/server/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "ts-node-dev index.ts",
+    "start": "node dist/server/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only index.ts",
     "build": "tsc"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.5.1",
+    "@supabase/supabase-js": "latest",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1"
   },
   "devDependencies": {
