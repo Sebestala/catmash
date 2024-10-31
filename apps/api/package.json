@@ -1,10 +1,10 @@
 {
-  "name": "catmash-server",
+  "name": "@catmash/api",
   "version": "1.0.0",
   "main": "dist/server/index.js",
   "scripts": {
     "start": "node dist/server/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only  index.ts --port 3001",
     "build": "tsc"
   },
   "dependencies": {
