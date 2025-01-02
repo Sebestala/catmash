@@ -1,8 +1,8 @@
-import { Cat } from "@/models/Cat";
-import Image from "next/image";
+import type { Cat } from '@repo/types'
+import Image from 'next/image'
 
 interface RankingCardProps extends Partial<Cat> {
-  rank: number;
+  rank: number
 }
 
 /**
@@ -16,45 +16,40 @@ interface RankingCardProps extends Partial<Cat> {
  *
  * @returns {React.ReactElement} The rendered ranking card component.
  */
-export function RankingCard({
-  url,
-  score,
-  rank,
-  catNumber,
-}: RankingCardProps): React.ReactElement {
+export function RankingCard({ url, score, rank, catNumber }: RankingCardProps): React.ReactElement {
   const aspectRatio =
     rank === 1
-      ? "aspect-[1.51]"
+      ? 'aspect-[1.51]'
       : rank === 2
-        ? "aspect-[1.73]"
+        ? 'aspect-[1.73]'
         : rank === 3
-          ? "aspect-[2.03]"
-          : "aspect-[1.54]";
+          ? 'aspect-[2.03]'
+          : 'aspect-[1.54]'
 
   const borderColor =
     rank === 1
-      ? "border-yellow-500"
+      ? 'border-yellow-500'
       : rank === 2
-        ? "border-slate-400"
+        ? 'border-slate-400'
         : rank === 3
-          ? "border-orange-700"
-          : "border-gray-500";
+          ? 'border-orange-700'
+          : 'border-gray-500'
 
   const textColor =
     rank === 1
-      ? "text-yellow-500"
+      ? 'text-yellow-500'
       : rank === 2
-        ? "text-slate-400"
+        ? 'text-slate-400'
         : rank === 3
-          ? "text-orange-700"
-          : "text-gray-500";
+          ? 'text-orange-700'
+          : 'text-gray-500'
 
   return (
     <div
       className={`relative ${aspectRatio} border-2 ${borderColor} overflow-hidden rounded-xl border`}
     >
       <Image
-        src={url || ""}
+        src={url || ''}
         alt={`Chat ${rank}`}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className={`rounded-lg object-cover`}
@@ -70,11 +65,9 @@ export function RankingCard({
         </div>
       </div>
       <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center">
-        <h2 className="mb-1 text-lg font-semibold text-white">
-          Chat {catNumber}
-        </h2>
+        <h2 className="mb-1 text-lg font-semibold text-white">Chat {catNumber}</h2>
         <p className="text-sm italic text-white">Score: {score}pts</p>
       </div>
     </div>
-  );
+  )
 }

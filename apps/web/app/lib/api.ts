@@ -1,46 +1,46 @@
-import { Cat } from "@/models/Cat";
+import type { Cat } from '@repo/types'
 
 export async function fetchAndStoreCats() {
-  const response = await fetch("http://localhost:3001/api/cats/fetch", {
-    next: { revalidate: 3600 },
-  });
+  const response = await fetch('http://localhost:3001/api/cats/fetch', {
+    next: { revalidate: 3600 }
+  })
   if (!response.ok) {
-    throw new Error("Failed to fetch cats");
+    throw new Error('Failed to fetch cats')
   }
 }
 
 export async function fetchCats(): Promise<{
-  cats: Cat[];
+  cats: Cat[]
 }> {
-  const response = await fetch("http://localhost:3001/api/cats", {
-    next: { revalidate: 0 },
-  });
+  const response = await fetch('http://localhost:3001/api/cats', {
+    next: { revalidate: 0 }
+  })
   if (!response.ok) {
-    throw new Error("Failed to fetch cats");
+    throw new Error('Failed to fetch cats')
   }
-  return response.json();
+  return response.json()
 }
 
 export async function fetchMatchesPlayed(): Promise<{
-  matchesPlayed: number;
+  matchesPlayed: number
 }> {
-  const response = await fetch("http://localhost:3001/api/cats/matchesPlayed", {
-    next: { revalidate: 0 },
-  });
+  const response = await fetch('http://localhost:3001/api/cats/matchesPlayed', {
+    next: { revalidate: 0 }
+  })
   if (!response.ok) {
-    throw new Error("Failed to fetch cats");
+    throw new Error('Failed to fetch cats')
   }
-  return response.json();
+  return response.json()
 }
 
 export async function updateCatScore(id: string): Promise<void> {
   const response = await fetch(`http://localhost:3001/api/cats/${id}/score`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
-    },
-  });
+      'Content-Type': 'application/json'
+    }
+  })
   if (!response.ok) {
-    throw new Error("Failed to update cat score");
+    throw new Error('Failed to update cat score')
   }
 }
