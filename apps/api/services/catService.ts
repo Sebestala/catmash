@@ -1,5 +1,5 @@
 import { supabase } from "../config/supabase";
-import { Cat } from "../../models/Cat";
+import { Cat } from "@models/Cat";
 
 interface CatWithImages {
   images: Partial<Cat>[];
