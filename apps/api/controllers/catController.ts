@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 import * as catService from '../services/catService'
 
-export async function fetchAndStoreCats(req: Request, res: Response, next: NextFunction) {
+export async function fetchExternalCatsAndStoreIt(req: Request, res: Response, next: NextFunction) {
   try {
-    const cats = await catService.fetchAndStoreCats()
+    const cats = await catService.fetchExternalCatsAndStoreIt()
     res.status(201).json(cats)
   } catch (error) {
     next(error)

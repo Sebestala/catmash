@@ -2,13 +2,9 @@ import { supabase } from '../config/supabase'
 import type { Cat } from '@repo/types'
 import { NotFoundError, BadRequestError, DatabaseError, ExternalApiError } from '../utils/errors'
 
-interface CatWithImages {
-  images: Partial<Cat>[]
-}
-
 const CAT_API_URL = 'https://data.latelier.co/cats.json'
 
-export async function fetchAndStoreCats(): Promise<Cat[]> {
+export async function fetchExternalCatsAndStoreIt(): Promise<Cat[]> {
   try {
     const catsImages = await fetchExternalCatsImages()
     const cats = catsImages.map((cat, index) => ({

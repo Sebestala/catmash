@@ -1,5 +1,5 @@
 {
-  "name": "@catmash/api",
+  "name": "api",
   "version": "1.0.0",
   "main": "dist/server/index.js",
   "scripts": {
