@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, Suspense } from 'react'
 import { CatLikeBox } from '@/components/CatLikeBox'
 import type { Cat } from '@repo/types'
 import { AnimatePresence } from 'framer-motion'
 import { updateCatScore } from './lib/api'
+import { Loading } from '@/components/Loading'
 
 interface CatVotingInterfaceProps {
   cats: Cat[]
@@ -55,7 +56,7 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
     <div className="grid grid-cols-2 gap-4 sm:gap-12 md:gap-20">
       <AnimatePresence>
         {!isLoading && (
-          <>
+          <Suspense fallback={<Loading />}>
             <CatLikeBox
               imageUrl={pair[0].url}
               catNumber={pair[0].catNumber}
@@ -69,7 +70,7 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
               onLike={() => handleVote(pair[1].id)}
               position="right"
             />
-          </>
+          </Suspense>
         )}
       </AnimatePresence>
     </div>
