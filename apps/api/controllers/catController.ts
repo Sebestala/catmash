@@ -1,40 +1,39 @@
-import { Request, Response } from "express";
-import * as catService from "../services/catService";
+import { Request, Response, NextFunction } from 'express'
+import * as catService from '../services/catService'
 
-export const fetchAndStoreCats = async (req: Request, res: Response) => {
+export async function fetchAndStoreCats(req: Request, res: Response, next: NextFunction) {
   try {
-    await catService.fetchAndStoreCats();
-    res.status(200).json({ message: "Cats fetched and stored successfully" });
-  } catch {
-    res.status(500).json({ error: "Error fetching and storing cats" });
+    const cats = await catService.fetchAndStoreCats()
+    res.status(201).json(cats)
+  } catch (error) {
+    next(error)
   }
-};
+}
 
-export const getCats = async (req: Request, res: Response) => {
+export async function getCats(req: Request, res: Response, next: NextFunction) {
   try {
-    const cats = await catService.getCats();
-    res.status(200).json(cats);
-  } catch {
-    res.status(500).json({ error: "Error fetching cats" });
+    const cats = await catService.getCats()
+    res.status(200).json(cats)
+  } catch (error) {
+    next(error)
   }
-};
+}
 
-export const updateCatScore = async (req: Request, res: Response) => {
-  const { id } = req.params;
-
+export async function updateCatScore(req: Request, res: Response, next: NextFunction) {
   try {
-    await catService.updateCatScore(id);
-    res.status(200).json({ message: "Cat score updated successfully" });
-  } catch {
-    res.status(500).json({ error: "Error updating cat score" });
+    const { id } = req.params
+    const updatedCat = await catService.updateCatScore(id)
+    res.status(200).json(updatedCat)
+  } catch (error) {
+    next(error)
   }
-};
+}
 
-export const getMatchesPlayed = async (req: Request, res: Response) => {
+export async function getMatchesPlayed(req: Request, res: Response, next: NextFunction) {
   try {
-    const matchesPlayed = await catService.getMatchesPlayed();
-    res.status(200).json(matchesPlayed);
-  } catch {
-    res.status(500).json({ error: "Error fetching matches played" });
+    const matchesPlayed = await catService.getMatchesPlayed()
+    res.status(200).json(matchesPlayed)
+  } catch (error) {
+    next(error)
   }
-};
+}

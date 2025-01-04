@@ -1,25 +1,25 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
-import { BottomBarNavigation } from "@/components/Layouts/BottomBarNavigation";
-import { TopCatBar } from "@/components/Layouts/TopCatBar";
-import { fetchMatchesPlayed } from "./lib/api";
+import type { Metadata } from 'next'
+import localFont from 'next/font/local'
+import './globals.css'
+import { BottomBarNavigation } from '@/components/Layouts/BottomBarNavigation'
+import { TopCatBar } from '@/components/Layouts/TopCatBar'
+import { fetchMatchesPlayed } from './lib/api'
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
+  src: './fonts/GeistVF.woff',
+  variable: '--font-geist-sans',
+  weight: '100 900'
+})
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+  src: './fonts/GeistMonoVF.woff',
+  variable: '--font-geist-mono',
+  weight: '100 900'
+})
 
 export const metadata: Metadata = {
-  title: "Catmash",
-  description: "Tournament of pretty cats",
-};
+  title: 'Catmash',
+  description: 'Tournament of pretty cats'
+}
 
 /**
  * RootLayout component provides the root structure for the "Catmash" application,
@@ -34,24 +34,20 @@ export const metadata: Metadata = {
  * - Provides padding adjustments to ensure content is spaced appropriately from fixed headers and footers.
  */
 export default async function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>): Promise<React.ReactElement> {
-  const initialMatchesPlayed = await fetchMatchesPlayed();
+  const initialMatchesPlayed = await fetchMatchesPlayed()
   return (
     <html lang="fr">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TopCatBar />
         <main className="bg-pink overflow-hidden py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
           {children}
         </main>
-        <BottomBarNavigation
-          initialMatchesPlayed={initialMatchesPlayed.matchesPlayed}
-        />
+        <BottomBarNavigation initialMatchesPlayed={initialMatchesPlayed} />
       </body>
     </html>
-  );
+  )
 }

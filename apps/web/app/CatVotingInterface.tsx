@@ -16,7 +16,7 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
   const [pair, setPair] = useState<[Cat, Cat] | null>(null)
 
   const getRandomPair = useCallback((): [Cat, Cat] | null => {
-    if (cats.length < 2) return null
+    if (!cats || cats.length < 2) return null
     const shuffled = [...cats].sort(() => 0.5 - Math.random())
     return [shuffled[0], shuffled[1]]
   }, [cats])

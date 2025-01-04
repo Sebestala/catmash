@@ -1,5 +1,5 @@
-import { RankingCard } from "@/components/RankingCard";
-import { fetchCats } from "../lib/api";
+import { RankingCard } from '@/components/RankingCard'
+import { fetchCats } from '../lib/api'
 
 /**
  * RankingPage component displays a list of ranked cats based on their scores.
@@ -12,9 +12,9 @@ import { fetchCats } from "../lib/api";
  * - Highlights the top three cats in a prominent layout.
  */
 export default async function RankingPage(): Promise<React.ReactElement | null> {
-  const { cats } = await fetchCats();
+  const { cats } = await fetchCats()
 
-  if (!cats || cats.length === 0) return null;
+  if (!cats || cats.length === 0) return null
 
   return (
     <div className="top-4 space-y-4 px-6 py-4">
@@ -59,5 +59,5 @@ export default async function RankingPage(): Promise<React.ReactElement | null> 
         ))}
       </div>
     </div>
-  );
+  )
 }

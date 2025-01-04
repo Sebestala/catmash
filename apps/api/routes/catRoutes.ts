@@ -1,26 +1,11 @@
-import express from "express";
-import {
-  fetchAndStoreCats,
-  getCats,
-  updateCatScore,
-  getMatchesPlayed,
-} from "../controllers/catController";
+import express from 'express'
+import * as catController from '../controllers/catController'
 
-const router = express.Router();
+const router = express.Router()
 
-export const fetchAndStoreCatsRoute = router.get(
-  "/cats/fetch",
-  fetchAndStoreCats,
-);
+router.get('/cats/fetch', catController.fetchAndStoreCats)
+router.get('/cats', catController.getCats)
+router.put('/cats/:id', catController.updateCatScore)
+router.get('/cats/matches-played', catController.getMatchesPlayed)
 
-export const getCatsRoute = router.get("/cats", getCats);
-
-export const updateCatScoreRoute = router.put(
-  "/cats/:id/score",
-  updateCatScore,
-);
-
-export const getMatchesPlayedRoute = router.get(
-  "/cats/matchesPlayed",
-  getMatchesPlayed,
-);
+export default router
