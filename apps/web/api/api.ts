@@ -1,7 +1,9 @@
 import type { Cat } from '@repo/types'
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 export async function fetchAndStoreCats() {
-  const response = await fetch('http://localhost:3001/api/cats/fetch', {
+  const response = await fetch(`${API_URL}/api/cats/fetch`, {
     next: { revalidate: 3600 }
   })
   if (!response.ok) {
@@ -12,7 +14,7 @@ export async function fetchAndStoreCats() {
 export async function fetchCats(): Promise<{
   cats: Cat[]
 }> {
-  const response = await fetch('http://localhost:3001/api/cats', {
+  const response = await fetch(`${API_URL}/api/cats`, {
     next: { revalidate: 0 }
   })
   if (!response.ok) {
@@ -23,7 +25,7 @@ export async function fetchCats(): Promise<{
 }
 
 export async function fetchMatchesPlayed(): Promise<number> {
-  const response = await fetch('http://localhost:3001/api/cats/matches-played', {
+  const response = await fetch(`${API_URL}/api/cats/matches-played`, {
     next: { revalidate: 0 }
   })
   if (!response.ok) {
@@ -33,7 +35,7 @@ export async function fetchMatchesPlayed(): Promise<number> {
 }
 
 export async function updateCatScore(id: string): Promise<void> {
-  const response = await fetch(`http://localhost:3001/api/cats/${id}`, {
+  const response = await fetch(`${API_URL}/api/cats/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
