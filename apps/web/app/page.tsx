@@ -1,5 +1,5 @@
 import { CatVotingInterface } from './CatVotingInterface'
-import { fetchAndStoreCats, fetchCats } from './lib/api'
+import { fetchAndStoreCats, fetchCats } from '@/api/api'
 
 export default async function Home() {
   await fetchAndStoreCats()

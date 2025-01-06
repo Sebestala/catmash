@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ChevronUp } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { fetchMatchesPlayed } from '@/app/lib/api'
+import { fetchMatchesPlayed } from '@/api/api'
 
 interface BottomBarNavigationProps {
   initialMatchesPlayed: number

@@ -1,5 +1,5 @@
 import { RankingCard } from '@/components/RankingCard'
-import { fetchCats } from '../lib/api'
+import { fetchCats } from '@/api/api'
 
 /**
  * RankingPage component displays a list of ranked cats based on their scores.

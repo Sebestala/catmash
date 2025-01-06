@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, Suspense } from 'react'
 import { CatLikeBox } from '@/components/CatLikeBox'
 import type { Cat } from '@repo/types'
 import { AnimatePresence } from 'framer-motion'
-import { updateCatScore } from './lib/api'
+import { updateCatScore } from '@/api/api'
 import { Loading } from '@/components/Loading'
 
 interface CatVotingInterfaceProps {
@@ -44,35 +44,37 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
     }
   }
 
+  if (cats.length < 2) {
+    return <div>Pas assez de chats pour faire une paire</div>
+  }
+
   if (!pair) {
-    return (
-      <div className="-mt-32 flex h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-t-2 border-blue-800"></div>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4 sm:gap-12 md:gap-20">
-      <AnimatePresence>
-        {!isLoading && (
-          <Suspense fallback={<Loading />}>
-            <CatLikeBox
-              imageUrl={pair[0].url}
-              catNumber={pair[0].catNumber}
-              onLike={() => handleVote(pair[0].id)}
-              position="left"
-            />
+    <Suspense fallback={<Loading />}>
+      <div className="grid grid-cols-2 gap-4 sm:gap-12 md:gap-20">
+        <AnimatePresence>
+          {!isLoading && (
+            <>
+              <CatLikeBox
+                imageUrl={pair[0].url}
+                catNumber={pair[0].catNumber}
+                onLike={() => handleVote(pair[0].id)}
+                position="left"
+              />
 
-            <CatLikeBox
-              imageUrl={pair[1].url}
-              catNumber={pair[1].catNumber}
-              onLike={() => handleVote(pair[1].id)}
-              position="right"
-            />
-          </Suspense>
-        )}
-      </AnimatePresence>
-    </div>
+              <CatLikeBox
+                imageUrl={pair[1].url}
+                catNumber={pair[1].catNumber}
+                onLike={() => handleVote(pair[1].id)}
+                position="right"
+              />
+            </>
+          )}
+        </AnimatePresence>
+      </div>
+    </Suspense>
   )
 }
