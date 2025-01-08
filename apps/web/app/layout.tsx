@@ -43,7 +43,7 @@ export default async function RootLayout({
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TopCatBar />
-        <main className="bg-pink overflow-hidden px-4 py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
+        <main className="overflow-hidden px-4 py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
           {children}
         </main>
         <BottomBarNavigation initialMatchesPlayed={initialMatchesPlayed} />
