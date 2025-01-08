@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState, useEffect, useCallback, Suspense } from 'react'
@@ -53,28 +52,28 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
   }
 
   return (
-    // <Suspense fallback={<Loading />}>
-    <div className="grid grid-cols-2 gap-2 sm:gap-8 md:gap-12 px-0 pb-12 sm:px-12 md:px-20 lg:px-28 xl:px-64">
-      <AnimatePresence>
-        {!isLoading && (
-          <>
-            <CatCard
-              imageUrl={pair[0].url}
-              catNumber={pair[0].catNumber}
-              onLike={() => handleVote(pair[0].id)}
-              position="left"
-            />
+    <Suspense fallback={<Loading />}>
+      <div className="grid grid-cols-2 gap-2 sm:gap-8 md:gap-12 px-0 pb-12 sm:px-12 md:px-20 lg:px-28 xl:px-64">
+        <AnimatePresence>
+          {!isLoading && (
+            <>
+              <CatCard
+                imageUrl={pair[0].url}
+                catNumber={pair[0].catNumber}
+                onLike={() => handleVote(pair[0].id)}
+                position="left"
+              />
 
-            <CatCard
-              imageUrl={pair[1].url}
-              catNumber={pair[1].catNumber}
-              onLike={() => handleVote(pair[1].id)}
-              position="right"
-            />
-          </>
-        )}
-      </AnimatePresence>
-    </div>
-    // </Suspense>
+              <CatCard
+                imageUrl={pair[1].url}
+                catNumber={pair[1].catNumber}
+                onLike={() => handleVote(pair[1].id)}
+                position="right"
+              />
+            </>
+          )}
+        </AnimatePresence>
+      </div>
+    </Suspense>
   )
 }

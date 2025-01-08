@@ -19,11 +19,11 @@ interface RankingCardProps extends Partial<Cat> {
 export function RankingCard({ url, score, rank, catNumber }: RankingCardProps): React.ReactElement {
   const aspectRatio =
     rank === 1
-      ? 'aspect-[1.51]'
+      ? 'aspect-[1.10]'
       : rank === 2
-        ? 'aspect-[1.73]'
+        ? 'aspect-[1.25]'
         : rank === 3
-          ? 'aspect-[2.03]'
+          ? 'aspect-[1.40]'
           : 'aspect-[1.54]'
 
   const borderColor =

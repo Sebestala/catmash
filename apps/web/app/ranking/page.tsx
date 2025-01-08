@@ -17,8 +17,8 @@ export default async function RankingPage(): Promise<React.ReactElement | null> 
   if (!cats || cats.length === 0) return null
 
   return (
-    <div className="top-4 space-y-4 px-6 py-4">
-      <div className="top-8 grid grid-cols-1 items-end gap-4 md:grid-cols-3">
+    <div className="top-4 space-y-2 md:space-y-3 px-0 md:px-2 py-4">
+      <div className="top-8 grid grid-cols-1 items-end gap-2 md:gap-3 md:grid-cols-3">
         <div className="order-2 md:order-1">
           <RankingCard
             key={cats[1].id}
@@ -47,7 +47,7 @@ export default async function RankingPage(): Promise<React.ReactElement | null> 
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 md:gap-3 md:grid-cols-4">
         {cats.slice(3).map((cat, index) => (
           <RankingCard
             key={cat.id}

@@ -51,7 +51,7 @@ export function BottomBarNavigation({
       <nav className="flex justify-center">
         <button
           onClick={handleClick}
-          className="rounded-t-lg border border-blue-950 bg-blue-50/50 md:w-1/2 md:max-w-md"
+          className="rounded-t-lg border border-blue-950 bg-blue-50/80 md:w-1/2 md:max-w-md"
         >
           <div className="flex flex-col items-center justify-center space-y-0.5 px-4 py-1 md:space-y-2">
             <ChevronUp
