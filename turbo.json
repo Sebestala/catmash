@@ -10,6 +10,10 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "web#build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**"]
+    },
     "start": {
       "dependsOn": ["build"]
     },

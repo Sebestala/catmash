@@ -7,7 +7,7 @@ import catRoutes from './routes/catRoutes'
 import { AppError } from './utils/errors'
 
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 
 app.use(
   cors({
@@ -26,6 +26,8 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
     res.status(500).json({ error: 'An unexpected error occurred' })
   }
 })
+
+app.get('/', (req, res) => res.send('Express on Vercel'))
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
