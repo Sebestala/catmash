@@ -5,6 +5,7 @@ import express from 'express'
 import cors from 'cors'
 import catRoutes from './routes/catRoutes'
 import { AppError, NotFoundError } from './utils/errors'
+import initCats from './scripts/initCats'
 
 const app = express()
 const PORT = process.env.PORT || 3002
@@ -44,6 +45,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 
 app.get('/', (req, res) => res.send('Express on Vercel'))
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`)
+  await initCats()
 })

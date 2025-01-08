@@ -2,19 +2,6 @@ import { Request, Response, NextFunction } from 'express'
 import * as catService from '../services/catService'
 import { NotFoundError, BadRequestError, DatabaseError, ExternalApiError } from '../utils/errors'
 
-export async function createCats(req: Request, res: Response, next: NextFunction) {
-  try {
-    const cats = await catService.createCats()
-    res.status(201).json(cats)
-  } catch (error) {
-    if (error instanceof ExternalApiError) {
-      res.status(503).json({ message: error.message })
-    } else {
-      next(error)
-    }
-  }
-}
-
 export async function getCats(req: Request, res: Response, next: NextFunction) {
   try {
     const cats = await catService.getCats()

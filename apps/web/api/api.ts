@@ -16,16 +16,6 @@ export async function getCats(): Promise<{
   return { cats: data }
 }
 
-export async function createCats() {
-  const response = await fetch(`${API_URL}/api/cats`, {
-    method: 'POST',
-    next: { revalidate: 3600 }
-  })
-  if (!response.ok) {
-    throw new Error(response.statusText)
-  }
-}
-
 export async function updateCatScore(id: string): Promise<void> {
   const response = await fetch(`${API_URL}/api/cats/${id}`, {
     method: 'PUT',
