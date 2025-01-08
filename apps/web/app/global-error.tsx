@@ -13,7 +13,7 @@ export default function GlobalError({
   const router = useRouter()
 
   useEffect(() => {
-    console.error(error)
+    error && console.error(error)
   }, [error])
 
   const handleRetry = () => {
@@ -39,11 +39,12 @@ export default function GlobalError({
           <div className="text-center bg-white p-8 rounded-lg shadow-md">
             <h1 className="text-2xl font-bold text-red-600">Une erreur critique est survenue</h1>
             <p className="mt-4 text-lg text-red-500">
-              {error.message || "L'application a rencontré une erreur inattendue."}
+              {error.name} / {error.message}
+              {error.cause ? (
+                <p className="mt-4 text-lg text-blue-500">/{String(error.cause)}</p>
+              ) : null}
             </p>
-            <p className="mt-2 text-sm text-gray-500">
-              {error.digest && `Erreur ID: ${error.digest}`}
-            </p>
+
             <button
               onClick={handleRetry}
               className="mt-6 w-40 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700 transition duration-300 ease-in-out"

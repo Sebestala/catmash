@@ -8,6 +8,7 @@ export async function getCats(): Promise<{
   const response = await fetch(`${API_URL}/api/cats`, {
     next: { revalidate: 0 }
   })
+
   if (!response.ok) {
     throw new Error(response.statusText)
   }

@@ -4,7 +4,7 @@ dotenv.config()
 import express from 'express'
 import cors from 'cors'
 import catRoutes from './routes/catRoutes'
-import { AppError } from './utils/errors'
+import { AppError, NotFoundError } from './utils/errors'
 
 const app = express()
 const PORT = process.env.PORT || 3002
@@ -19,11 +19,26 @@ app.use(express.json())
 
 app.use('/api', catRoutes)
 
+app.use((req, res, next) => {
+  next(new NotFoundError(`Route not found - ${req.originalUrl}`))
+})
+
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error(err)
+
   if (err instanceof AppError) {
-    res.status(err.statusCode).json({ error: err.message })
+    res.status(err.statusCode).json({
+      status: 'error',
+      statusCode: err.statusCode,
+      message: err.message
+    })
   } else {
-    res.status(500).json({ error: 'An unexpected error occurred' })
+    res.status(500).json({
+      status: 'error',
+      statusCode: 500,
+      message: 'An unexpected error occurred',
+      error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    })
   }
 })
 

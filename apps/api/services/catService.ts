@@ -35,6 +35,9 @@ export async function createCats(): Promise<Cat[]> {
 
     return await getCats()
   } catch (error) {
+    if (error instanceof DatabaseError || error instanceof ExternalApiError) {
+      throw error
+    }
     throw new ExternalApiError('Failed to fetch and store cats')
   }
 }
