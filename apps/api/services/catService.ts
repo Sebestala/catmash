@@ -4,7 +4,7 @@ import { NotFoundError, BadRequestError, DatabaseError, ExternalApiError } from 
 
 const CAT_API_URL = 'https://data.latelier.co/cats.json'
 
-export async function fetchExternalCatsAndStoreIt(): Promise<Cat[]> {
+export async function createCats(): Promise<Cat[]> {
   try {
     const catsImages = await fetchExternalCatsImages()
     const cats = catsImages.map((cat, index) => ({

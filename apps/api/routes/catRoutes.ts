@@ -3,9 +3,9 @@ import * as catController from '../controllers/catController'
 
 const router = express.Router()
 
-router.get('/cats/fetch', catController.fetchExternalCatsAndStoreIt)
 router.get('/cats', catController.getCats)
+router.post('/cats', catController.createCats)
 router.put('/cats/:id', catController.updateCatScore)
-router.get('/cats/matches-played', catController.getMatchesPlayed)
+router.get('/matches', catController.getMatchesPlayed)
 
 export default router

@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { BottomBarNavigation } from '@/components/Layouts/BottomBarNavigation'
 import { TopCatBar } from '@/components/Layouts/TopCatBar'
-import { fetchMatchesPlayed } from '../api/api'
+import { getMatchesPlayed } from '@/api/api'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -38,7 +38,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>): Promise<React.ReactElement> {
-  const initialMatchesPlayed = await fetchMatchesPlayed()
+  const initialMatchesPlayed = await getMatchesPlayed()
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

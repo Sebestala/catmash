@@ -2,16 +2,7 @@ import type { Cat } from '@repo/types'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-export async function fetchAndStoreCats() {
-  const response = await fetch(`${API_URL}/api/cats/fetch`, {
-    next: { revalidate: 3600 }
-  })
-  if (!response.ok) {
-    throw new Error(response.statusText)
-  }
-}
-
-export async function fetchCats(): Promise<{
+export async function getCats(): Promise<{
   cats: Cat[]
 }> {
   const response = await fetch(`${API_URL}/api/cats`, {
@@ -24,14 +15,14 @@ export async function fetchCats(): Promise<{
   return { cats: data }
 }
 
-export async function fetchMatchesPlayed(): Promise<number> {
-  const response = await fetch(`${API_URL}/api/cats/matches-played`, {
-    next: { revalidate: 0 }
+export async function createCats() {
+  const response = await fetch(`${API_URL}/api/cats`, {
+    method: 'POST',
+    next: { revalidate: 3600 }
   })
   if (!response.ok) {
     throw new Error(response.statusText)
   }
-  return response.json()
 }
 
 export async function updateCatScore(id: string): Promise<void> {
@@ -44,4 +35,14 @@ export async function updateCatScore(id: string): Promise<void> {
   if (!response.ok) {
     throw new Error('Failed to update cat score')
   }
+}
+
+export async function getMatchesPlayed(): Promise<number> {
+  const response = await fetch(`${API_URL}/api/matches`, {
+    next: { revalidate: 0 }
+  })
+  if (!response.ok) {
+    throw new Error(response.statusText)
+  }
+  return response.json()
 }

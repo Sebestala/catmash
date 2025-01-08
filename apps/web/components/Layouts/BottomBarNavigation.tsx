@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ChevronUp } from 'lucide-react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { fetchMatchesPlayed } from '@/api/api'
+import { getMatchesPlayed } from '@/api/api'
 
 interface BottomBarNavigationProps {
   initialMatchesPlayed: number
@@ -20,7 +20,7 @@ export function BottomBarNavigation({
   useEffect(() => {
     const updateMatchesCount = async () => {
       try {
-        const data: number = await fetchMatchesPlayed()
+        const data: number = await getMatchesPlayed()
         setMatchesPlayed(data)
       } catch (error) {
         console.error('Failed to fetch matches count:', error)
