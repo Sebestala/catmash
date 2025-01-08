@@ -8,6 +8,7 @@
     { "src": "/api/(.*)", "dest": "apps/api/$1" },
     { "src": "/(.*)", "dest": "apps/web/$1" }
   ],
-  "devCommand": "pnpm turbo run dev",
-  "buildCommand": "pnpm turbo run build"
+  "buildCommand": "pnpm turbo run build",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "pnpm install"
 }
