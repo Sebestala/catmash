@@ -1,5 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["SUPABASE_URL", "SUPABASE_KEY", "NEXT_PUBLIC_FRONTEND_URL", "NEXT_PUBLIC_API_URL"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -8,12 +9,10 @@
     },
     "api#build": {
       "dependsOn": ["^build"],
-      "env": ["SUPABASE_URL", "SUPABASE_KEY", "NEXT_PUBLIC_FRONTEND_URL"],
       "outputs": ["dist/**"]
     },
     "web#build": {
       "dependsOn": ["^build"],
-      "env": ["NEXT_PUBLIC_API_URL"],
       "outputs": [".next/**"]
     },
     "start": {

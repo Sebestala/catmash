@@ -18,6 +18,12 @@ app.use(
 
 app.use(express.json())
 
+app.get('/', (req, res) => res.send('Express on Vercel'))
+
+app.get('/test', (req, res) => {
+  res.json({ message: 'API is working' })
+})
+
 app.use('/api', catRoutes)
 
 app.use((req, res, next) => {
@@ -41,12 +47,6 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
       error: process.env.NODE_ENV === 'development' ? err.message : undefined
     })
   }
-})
-
-app.get('/', (req, res) => res.send('Express on Vercel'))
-
-app.get('/test', (req, res) => {
-  res.json({ message: 'API is working' })
 })
 
 app.listen(PORT, async () => {
