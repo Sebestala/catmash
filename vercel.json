@@ -2,7 +2,5 @@
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/apps/api/dist/api/index.js" },
     { "source": "/(.*)", "destination": "/apps/web/$1" }
-  ],
-  "buildCommand": "pnpm turbo run build",
-  "outputDirectory": "apps/web/.next"
+  ]
 }
