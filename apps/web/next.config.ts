@@ -5,7 +5,10 @@ const tumblrDomains = Array.from({ length: 50 }, (_, i) => `${i}.media.tumblr.co
 
 const nextConfig: NextConfig = {
   images: {
-    domains: tumblrDomains
+    remotePatterns: tumblrDomains.map((domain) => ({
+      protocol: 'https',
+      hostname: domain
+    }))
   }
   /* config options here */
 }
