@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001
 
 app.use(
   cors({
-    origin: 'http://localhost:3000'
+    origin: process.env.NEXT_PUBLIC_FRONTEND_URL || 'http://localhost:3000'
   })
 )
 
@@ -44,6 +44,10 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
 })
 
 app.get('/', (req, res) => res.send('Express on Vercel'))
+
+app.get('/test', (req, res) => {
+  res.json({ message: 'API is working' })
+})
 
 app.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`)
