@@ -1,10 +1,15 @@
 {
+  "version": 2,
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/apps/api/dist/api/index.js" },
     { "source": "/(.*)", "destination": "/apps/web/$1" }
   ],
   "builds": [
-    { "src": "apps/api/package.json", "use": "@vercel/node" },
+    {
+      "src": "apps/api/package.json",
+      "use": "@vercel/node",
+      "config": { "includeFiles": ["dist/**"] }
+    },
     { "src": "apps/web/package.json", "use": "@vercel/next" }
   ]
 }
