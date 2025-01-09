@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import * as catService from '../services/catService'
-import { NotFoundError, BadRequestError, DatabaseError, ExternalApiError } from '../utils/errors'
+import { NotFoundError, BadRequestError } from '../utils/errors'
 
 export async function getCats(req: Request, res: Response, next: NextFunction) {
   try {
