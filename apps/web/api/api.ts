@@ -30,7 +30,7 @@ export async function updateCatScore(id: string): Promise<void> {
 
 export async function getMatchesPlayed(): Promise<number> {
   const response = await fetch(`${API_URL}/api/matches`, {
-    next: { revalidate: 3600, tags: ['nbMatches'] }
+    next: { revalidate: 0 }
   })
   if (!response.ok) {
     throw new Error(response.statusText)

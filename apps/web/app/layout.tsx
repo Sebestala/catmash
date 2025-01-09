@@ -4,6 +4,7 @@ import './globals.css'
 import { BottomBarNavigation } from '@/components/Layouts/BottomBarNavigation'
 import { TopCatBar } from '@/components/Layouts/TopCatBar'
 import { getMatchesPlayed } from '@/api/api'
+import { MatchesProvider } from '@/context/MatchesContext'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -42,11 +43,13 @@ export default async function RootLayout({
   return (
     <html lang="fr">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <TopCatBar />
-        <main className="overflow-hidden px-4 py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
-          {children}
-        </main>
-        <BottomBarNavigation initialMatchesPlayed={initialMatchesPlayed} />
+        <MatchesProvider initialMatchesPlayed={initialMatchesPlayed}>
+          <TopCatBar />
+          <main className="overflow-hidden px-4 py-4 pt-32 md:pt-28 lg:pt-32 xl:pt-40">
+            {children}
+          </main>
+          <BottomBarNavigation />
+        </MatchesProvider>
       </body>
     </html>
   )

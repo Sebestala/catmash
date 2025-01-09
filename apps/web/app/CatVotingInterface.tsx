@@ -6,6 +6,7 @@ import type { Cat } from '@repo/types'
 import { AnimatePresence } from 'framer-motion'
 import { Loading } from '@/components/Loading'
 import { voteForCat } from './actions/vote'
+import { useMatches } from '@/context/MatchesContext'
 
 interface CatVotingInterfaceProps {
   cats: Cat[]
@@ -14,6 +15,7 @@ interface CatVotingInterfaceProps {
 export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.ReactElement {
   const [isLoading, setIsLoading] = useState(false)
   const [pair, setPair] = useState<[Cat, Cat] | null>(null)
+  const { incrementMatchesPlayed } = useMatches()
 
   const getRandomPair = useCallback((): [Cat, Cat] | null => {
     if (!cats || cats.length < 2) return null
@@ -30,9 +32,7 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
     try {
       const result = await voteForCat(id)
       if (result.success) {
-        if (typeof window !== 'undefined' && (window as any).incrementMatchesPlayed) {
-          ;(window as any).incrementMatchesPlayed()
-        }
+        incrementMatchesPlayed()
         setPair(getRandomPair())
       } else {
         console.error('Failed to update cat score:', result.error)

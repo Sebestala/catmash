@@ -2,47 +2,15 @@
 
 import { usePathname, useRouter } from 'next/navigation'
 import { ChevronUp } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { getMatchesPlayed } from '@/api/api'
+import { useMatches } from '@/context/MatchesContext'
 
-interface BottomBarNavigationProps {
-  initialMatchesPlayed: number
-}
-
-export function BottomBarNavigation({
-  initialMatchesPlayed
-}: BottomBarNavigationProps): React.ReactElement {
+export function BottomBarNavigation(): React.ReactElement {
   const router = useRouter()
   const pathname = usePathname()
-  const [matchesPlayed, setMatchesPlayed] = useState(initialMatchesPlayed)
-
-  useEffect(() => {
-    const updateMatchesCount = async () => {
-      try {
-        const data: number = await getMatchesPlayed()
-        setMatchesPlayed(data)
-      } catch (error) {
-        console.error('Failed to fetch matches count:', error)
-      }
-    }
-
-    const intervalId = setInterval(updateMatchesCount, 10000)
-
-    return () => clearInterval(intervalId)
-  }, [])
-
-  const incrementMatchesPlayed = () => {
-    setMatchesPlayed((prev) => prev + 1)
-  }
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ;(window as any).incrementMatchesPlayed = incrementMatchesPlayed
-    }
-  }, [])
+  const { matchesPlayed, refreshMatchesCount } = useMatches()
 
   const handleClick = () => {
+    refreshMatchesCount()
     router.push(pathname === '/' ? '/ranking' : '/')
   }
 
