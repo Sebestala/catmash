@@ -33,7 +33,6 @@ yarn-error.log*
 .turbo
 
 # ui
-dist/
 
 *storybook.log
 storybook-static/
