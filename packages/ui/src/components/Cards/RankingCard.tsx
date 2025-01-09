@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '../../lib/utils'
 import type { Cat } from '@repo/types'
 import Image from 'next/image'
 
@@ -17,7 +17,12 @@ interface RankingCardProps extends Partial<Cat> {
  *
  * @returns {React.ReactElement} The rendered ranking card component.
  */
-export function RankingCard({ url, score, rank, catNumber }: RankingCardProps): React.ReactElement {
+export function RankingCard({
+  url,
+  score,
+  rank,
+  catNumber
+}: RankingCardProps): React.ReactElement {
   const aspectRatio =
     rank === 1
       ? 'aspect-[1.10]'
@@ -76,7 +81,9 @@ export function RankingCard({ url, score, rank, catNumber }: RankingCardProps): 
         </div>
       </div>
       <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center">
-        <h2 className="mb-1 text-lg font-semibold text-white">Chat {catNumber}</h2>
+        <h2 className="mb-1 text-lg font-semibold text-white">
+          Chat {catNumber}
+        </h2>
         <p className="text-sm italic text-white">Score: {score}pts</p>
       </div>
     </div>

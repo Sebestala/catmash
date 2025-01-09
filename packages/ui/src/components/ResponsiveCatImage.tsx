@@ -8,7 +8,7 @@ import { motion } from 'framer-motion'
  *
  * @returns {JSX.Element} The rendered responsive cat image component.
  */
-export default function ResponsiveCatImage(): JSX.Element {
+export function ResponsiveCatImage(): JSX.Element {
   const bounceVariants = {
     initial: { scale: 1 },
     animate: {

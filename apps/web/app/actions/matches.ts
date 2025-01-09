@@ -1,6 +1,6 @@
 'use server'
 
-import { getMatchesPlayed } from '@/api/api'
+import { getMatchesPlayed } from '../api/api'
 
 export async function incrementMatches() {
   const newMatchesCount = await getMatchesPlayed()

@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import { BottomBarNavigation } from '@/components/Layouts/BottomBarNavigation'
-import { TopCatBar } from '@/components/Layouts/TopCatBar'
-import { getMatchesPlayed } from '@/api/api'
-import { MatchesProvider } from '@/context/MatchesContext'
-import { cn } from '@/lib/utils'
+import '@repo/ui/styles.css'
+import { getMatchesPlayed } from '@/app/api/api'
+import { MatchesProvider } from '@/app/context/MatchesContext'
+import { cn } from '@repo/ui'
+import { TopCatBar } from './components/Layouts/TopCatBar'
+import { BottomBarNavigation } from './components/Layouts/BottomBarNavigation'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',

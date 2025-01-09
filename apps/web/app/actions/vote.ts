@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { updateCatScore } from '@/api/api'
+import { updateCatScore } from '../api/api'
 
 export async function voteForCat(id: string) {
   try {

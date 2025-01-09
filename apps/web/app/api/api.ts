@@ -6,7 +6,7 @@ export async function getCats(): Promise<{
   cats: Cat[]
 }> {
   const response = await fetch(`${API_URL}/api/cats`, {
-    next: { revalidate: 3600 }
+    next: { revalidate: 0 }
   })
 
   if (!response.ok) {

@@ -1,7 +1,7 @@
 'use client'
 
-import { fetchMatchesCount, incrementMatches } from '@/app/actions/matches'
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react'
+import { fetchMatchesCount, incrementMatches } from '../actions/matches'
+import React, { createContext, useContext, useState, ReactNode } from 'react'
 
 interface MatchesContextProps {
   matchesPlayed: number

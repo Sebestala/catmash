@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { cn } from '@/lib/utils'
+import { cn } from '../../lib/utils'
 
 interface CatCardProps {
   imageUrl: string
@@ -70,14 +70,17 @@ export function CatCard({
       <div
         onClick={handleClick}
         className={cn(
-          `flex aspect-[1.5] transform cursor-pointer flex-col items-center rounded-lg p-2 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl md:p-4 2xl:p-8 bg-blue-100 hover:bg-blue-50`
+          `flex aspect-[1.5] transform cursor-pointer flex-col items-center rounded-lg bg-blue-100 p-2 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-2 hover:bg-blue-50 hover:shadow-xl md:p-4 2xl:p-8`
         )}
       >
-        <div className="relative flex flex-grow h-full w-full overflow-hidden rounded-lg pt-[100%]">
+        <div className="relative flex h-full w-full flex-grow overflow-hidden rounded-lg pt-[100%]">
           <Image
             src={imageUrl}
             alt={`Chat mignon ${catNumber}`}
-            className={cn('transition-all duration-300 ease-in-out', isLiked ? 'scale-105' : '')}
+            className={cn(
+              'transition-all duration-300 ease-in-out',
+              isLiked ? 'scale-105' : ''
+            )}
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             fill
