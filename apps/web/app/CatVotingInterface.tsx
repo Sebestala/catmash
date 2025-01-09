@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback, Suspense } from 'react'
 import { CatCard } from '@/components/CatCard'
 import type { Cat } from '@repo/types'
 import { AnimatePresence } from 'framer-motion'
-import { updateCatScore } from '@/api/api'
 import { Loading } from '@/components/Loading'
+import { voteForCat } from './actions/vote'
 
 interface CatVotingInterfaceProps {
   cats: Cat[]
@@ -26,20 +26,23 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
   }, [getRandomPair])
 
   const handleVote = async (id: string) => {
+    setIsLoading(true)
     try {
-      await updateCatScore(id)
-      if (typeof window !== 'undefined' && (window as any).incrementMatchesPlayed) {
-        ;(window as any).incrementMatchesPlayed()
+      const result = await voteForCat(id)
+      if (result.success) {
+        if (typeof window !== 'undefined' && (window as any).incrementMatchesPlayed) {
+          ;(window as any).incrementMatchesPlayed()
+        }
+        setPair(getRandomPair())
+      } else {
+        console.error('Failed to update cat score:', result.error)
       }
-      setPair(getRandomPair())
-      setIsLoading(true)
-      const timeoutId = setTimeout(() => {
+    } catch (error) {
+      console.error('Failed to vote:', error)
+    } finally {
+      setTimeout(() => {
         setIsLoading(false)
       }, 300)
-
-      return () => clearTimeout(timeoutId)
-    } catch (error) {
-      console.error('Failed to update cat score:', error)
     }
   }
 

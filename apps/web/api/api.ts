@@ -6,7 +6,7 @@ export async function getCats(): Promise<{
   cats: Cat[]
 }> {
   const response = await fetch(`${API_URL}/api/cats`, {
-    next: { revalidate: 0 }
+    next: { revalidate: 3600 }
   })
 
   if (!response.ok) {
@@ -30,7 +30,7 @@ export async function updateCatScore(id: string): Promise<void> {
 
 export async function getMatchesPlayed(): Promise<number> {
   const response = await fetch(`${API_URL}/api/matches`, {
-    next: { revalidate: 0 }
+    next: { revalidate: 3600, tags: ['nbMatches'] }
   })
   if (!response.ok) {
     throw new Error(response.statusText)
