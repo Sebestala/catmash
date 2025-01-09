@@ -8,7 +8,7 @@
     },
     "api#build": {
       "dependsOn": ["^build"],
-      "env": ["SUPABASE_URL", "SUPABASE_KEY"],
+      "env": ["SUPABASE_URL", "SUPABASE_KEY", "NEXT_PUBLIC_FRONTEND_URL"],
       "outputs": ["dist/**"]
     },
     "web#build": {
