@@ -1,4 +1,4 @@
-import ResponsiveCatImage from "@/components/ResponsiveCatImage";
+import ResponsiveCatImage from '@/components/ResponsiveCatImage'
 
 /**
  * TopCatBar component displays a top bar with the Catmash title and a responsive cat image.
@@ -20,5 +20,5 @@ export function TopCatBar(): React.ReactElement {
         </div>
       </div>
     </header>
-  );
+  )
 }

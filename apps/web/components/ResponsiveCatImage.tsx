@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 /**
  * ResponsiveCatImage component displays a bouncing cat image with responsive sizing.
  *
  * @returns {JSX.Element} The rendered responsive cat image component.
  */
-export default function ResponsiveCatImage() {
+export default function ResponsiveCatImage(): JSX.Element {
   const bounceVariants = {
     initial: { scale: 1 },
     animate: {
@@ -16,10 +16,10 @@ export default function ResponsiveCatImage() {
       transition: {
         duration: 0.6,
         times: [0, 0.2, 0.4, 0.6, 1],
-        ease: "easeInOut",
-      },
-    },
-  };
+        ease: 'easeInOut'
+      }
+    }
+  }
 
   return (
     <motion.div
@@ -31,10 +31,10 @@ export default function ResponsiveCatImage() {
       <Image
         src="/cat_topBar.webp"
         alt="Happy Cat"
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: 'cover' }}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         fill
       />
     </motion.div>
-  );
+  )
 }

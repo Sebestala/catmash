@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import type { Cat } from '@repo/types'
 import Image from 'next/image'
 
@@ -46,7 +47,13 @@ export function RankingCard({ url, score, rank, catNumber }: RankingCardProps): 
 
   return (
     <div
-      className={`relative ${aspectRatio} border-2 ${borderColor} overflow-hidden rounded-xl border`}
+      className={cn(
+        'relative',
+        aspectRatio,
+        'border-2',
+        borderColor,
+        'overflow-hidden rounded-xl border'
+      )}
     >
       <Image
         src={url || ''}
@@ -59,9 +66,13 @@ export function RankingCard({ url, score, rank, catNumber }: RankingCardProps): 
       />
       <div className="absolute left-1/2 top-6 z-10 flex -translate-x-1/2 flex-col items-center">
         <div
-          className={`flex h-8 w-8 items-center justify-center rounded-full border ${borderColor} bg-white/80`}
+          className={cn(
+            'flex h-8 w-8 items-center justify-center rounded-full border',
+            borderColor,
+            'bg-white/80'
+          )}
         >
-          <p className={`${textColor} font-bold`}>{rank}</p>
+          <p className={cn('font-bold', textColor)}>{rank}</p>
         </div>
       </div>
       <div className="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center">
