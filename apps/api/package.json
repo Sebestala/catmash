@@ -1,9 +1,9 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "main": "dist/api/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/api/index.js",
+    "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn --transpile-only index.ts",
     "build": "tsc"
   },
