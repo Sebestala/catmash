@@ -8,6 +8,7 @@
     "start": "next start -p 3000",
     "lint": "next lint"
   },
+  "packageManager": "pnpm@8.15.8",
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "@repo/ui": "workspace:*",
