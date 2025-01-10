@@ -75,6 +75,9 @@ cd catmash
 pnpm install
 ```
 
+NOTES: Pour une facilité d'utilisation j'ai laissé les fichiers `.env`et `.env.local` dans les
+dossiers `apps/api` et `apps/web`.
+
 ## 🏁 Lancement du projet
 
 Pour lancer le projet il faut utiliser le gestionnaire de paquets `pnpm` :
