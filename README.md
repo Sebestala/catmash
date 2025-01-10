@@ -34,18 +34,15 @@ architecture monorepo avec Turborepo, combinant un frontend Next.js et un backen
 Le projet est structuré comme suit :
 
 - `apps/`
-
-- `web/` : Application frontend Next.js
-- `api/` : Serveur backend Express
-
+  - `web/` : Application frontend Next.js
+  - `api/` : Serveur backend Express
 - `packages/`
-
-- `types/` : Types partagés entre le frontend et le backend
-- `ui/` : Composants UI réutilisables (bien que peu utilisés dans ce projet de petite envergure,
-  c'est une architecture appréciée pour sa scalabilité)
-- `eslint-config-custom/` : Configuration ESLint partagée
-- `tailwind-config/` : Configuration Tailwind partagée
-- `tsconfig/` : Configuration TypeScript partagée
+  - `types/` : Types partagés entre le frontend et le backend
+  - `ui/` : Composants UI réutilisables (bien que peu utilisés dans ce projet de petite envergure,
+    c'est une architecture appréciée pour sa scalabilité)
+  - `eslint-config-custom/` : Configuration ESLint partagée
+  - `tailwind-config/` : Configuration Tailwind partagée
+  - `tsconfig/` : Configuration TypeScript partagée
 
 ### 🖥️ Backend (Express)
 
@@ -71,68 +68,48 @@ git clone https://github.com/Sebestala/catmash.git
 cd catmash
 ```
 
-3. Installez les dépendances en utilisant l'un des gestionnaires de paquets (Avec pnpm il est
-   recommandé la version 8.15.8) :
+3. Installez les dépendances en utilisant le gestionnaires de paquets `pnpm` il est recommandé
+   d'utiliser la version 8.15.8 :
 
 ```plaintext
 pnpm install
-yarn install
-npm install
 ```
-
-4. Configurez les variables d'environnement :
-
-Créez un fichier `.env` dans `apps/api/` et `apps/web/` avec les variables nécessaires (ex:
-SUPABASE_URL, SUPABASE_KEY, etc.)
 
 ## 🏁 Lancement du projet
 
-Pour lancer l'ensemble du projet (frontend et backend) en mode développement en utilisant l'un des
-gestionnaires de paquets :
+Pour lancer le projet il faut utiliser le gestionnaire de paquets `pnpm` :
+
+### Production mode
+
+```plaintext
+pnpm build
+pnpm start
+```
+
+### Development mode
 
 ```plaintext
 pnpm dev
-yarn dev
-npm dev
 ```
 
 Pour lancer uniquement le frontend :
 
 ```plaintext
 pnpm dev:web
-yarn dev:web
-npm dev:web
 ```
 
 Pour lancer uniquement le backend :
 
 ```plaintext
 pnpm dev:api
-yarn dev:api
-npm dev:api
 ```
-
-## 🎯 Fonctionnalités
-
-- 🗳️ Vote pour le chat le plus mignon entre deux chats présentés
-- 🏆 Page de classement des chats les plus mignons
-- 🚀 Utilisation d'une fonction RPC Supabase 'increment_score' pour optimiser les appels API
-- 🖼️ Layout partagé avec logo de chat et barre de navigation
-- ⚡ Utilisation de Server Components et Server Actions pour optimiser les performances
 
 ## 🔧 Améliorations possibles
 
 1. 🧪 **Tests** : Ajouter des tests unitaires et d'intégration pour améliorer la fiabilité du code.
 2. 📚 **Storybook** : Implémenter Storybook pour une meilleure documentation et développement des
    composants UI.
-3. 🔄 **Streaming ou Webhooks** : Utiliser du streaming ou des webhooks pour rafraîchir en temps
+3. 🔄 **Streaming ou WebSockets** : Utiliser du streaming ou des WebSockets pour rafraîchir en temps
    réel le nombre de matchs joués, au lieu de le faire à chaque vote ou changement de page.
 4. 🚀 **Déploiement sur Vercel** : Trouver une solution pour déployer le backend Express sur Vercel,
    ou envisager de migrer vers un backend Next.js pour faciliter le déploiement.
-5. ⚡ **Optimisation des performances** : Analyser et optimiser davantage les performances,
-   notamment pour le chargement initial et les interactions utilisateur.
-6. 🌍 **Internationalisation** : Ajouter le support pour plusieurs langues.
-7. ♿ **Accessibilité** : Améliorer l'accessibilité de l'application pour les utilisateurs ayant des
-   besoins spécifiques.
-8. 📱 **Mode hors ligne** : Implémenter des fonctionnalités de Progressive Web App pour permettre
-   une utilisation hors ligne limitée.
