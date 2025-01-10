@@ -30,15 +30,15 @@ app.use(
 
 app.use(express.json())
 
-app.get('/', (req, res) => res.send('Express on Vercel'))
+app.get('/', (req: express.Request, res: express.Response) => res.send('Express on Vercel'))
 
-app.get('/test', (req, res) => {
+app.get('/test', (req: express.Request, res: express.Response) => {
   res.json({ message: 'API is working' })
 })
 
 app.use('/api', catRoutes)
 
-app.use((req, res, next) => {
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
   next(new NotFoundError(`Route not found - ${req.originalUrl}`))
 })
 

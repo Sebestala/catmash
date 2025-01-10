@@ -136,7 +136,7 @@ export async function getMatchesPlayed(): Promise<number> {
     throw new NotFoundError('No cat data found')
   }
 
-  return data.reduce((sum, cat) => sum + (cat.score || 0), 0)
+  return data.reduce((sum: number, cat: { score: number }) => sum + (cat.score || 0), 0)
 }
 
 async function fetchExternalCatsImages(): Promise<Partial<Cat>[]> {
