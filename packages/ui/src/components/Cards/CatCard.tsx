@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '../../lib/utils'
+import { transformToProtocolRelativeUrl } from '../../lib/url'
 
 interface CatCardProps {
   imageUrl: string
@@ -75,7 +76,7 @@ export function CatCard({
       >
         <div className="relative flex h-full w-full flex-grow overflow-hidden rounded-lg pt-[100%]">
           <Image
-            src={imageUrl}
+            src={transformToProtocolRelativeUrl(imageUrl)}
             alt={`Chat mignon ${catNumber}`}
             className={cn(
               'transition-all duration-300 ease-in-out',

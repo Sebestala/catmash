@@ -1,6 +1,7 @@
 import { cn } from '../../lib/utils'
 import type { Cat } from '@repo/types'
 import Image from 'next/image'
+import { transformToProtocolRelativeUrl } from '../../lib/url'
 
 interface RankingCardProps extends Partial<Cat> {
   rank: number
@@ -61,7 +62,7 @@ export function RankingCard({
       )}
     >
       <Image
-        src={url || ''}
+        src={url ? transformToProtocolRelativeUrl(url) : ''}
         alt={`Chat ${rank}`}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className={`rounded-lg object-cover`}
