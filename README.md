@@ -1,58 +1,184 @@
-# Turborepo Tailwind CSS starter
+# 🐱 Catmash - Projet de Vote pour le Chat le Plus Mignon
 
-This is an official starter Turborepo.
+## 📋 Table des matières
 
-## Using this example
+1. [Introduction](#introduction)
+2. [Technologies utilisées](#technologies-utilisées)
+3. [Architecture du projet](#architecture-du-projet)
+4. [Installation](#installation)
+5. [Lancement du projet](#lancement-du-projet)
+6. [Fonctionnalités](#fonctionnalités)
+7. [Améliorations possibles](#améliorations-possibles)
 
-Run the following command:
+## 🌟 Introduction
 
-```sh
-npx create-turbo@latest -e with-tailwind
+Catmash est une application web permettant aux utilisateurs de voter pour le chat le plus mignon et
+de consulter un classement des chats les plus populaires. Ce projet a été développé en utilisant une
+architecture monorepo avec Turborepo, combinant un frontend Next.js et un backend Express.
+
+## 🚀 Technologies utilisées
+
+- **Turborepo** : Choisi pour sa capacité à gérer efficacement un monorepo, permettant le lancement
+  du projet en une seule console, le partage de données entre les packages, et une amélioration
+  significative de la rapidité de développement et de build.
+- **Next.js v15 et React v19** : Utilisés pour le frontend, offrant des performances optimales et
+  les dernières fonctionnalités pour le développement d'applications web modernes.
+- **Express** : Choisi pour le backend en raison de sa simplicité et de sa flexibilité, bien que
+  dans un contexte différent, j'aurais pu opter pour un backend Next.js pour tirer parti de ses
+  fonctionnalités avancées.
+- **Tailwind CSS** : Pour un styling rapide et cohérent.
+- **Supabase** : Utilisé comme base de données et pour ses fonctionnalités backend-as-a-service.
+
+## 🏗️ Architecture du projet
+
+Le projet est structuré comme suit :
+
+- `apps/`
+
+- `web/` : Application frontend Next.js
+- `api/` : Serveur backend Express
+
+- `packages/`
+
+- `types/` : Types partagés entre le frontend et le backend
+- `ui/` : Composants UI réutilisables (bien que peu utilisés dans ce projet de petite envergure,
+  c'est une architecture appréciée pour sa scalabilité)
+- `eslint-config-custom/` : Configuration ESLint partagée
+- `tailwind-config/` : Configuration Tailwind partagée
+- `tsconfig/` : Configuration TypeScript partagée
+
+### 🖥️ Backend (Express)
+
+L'API Express suit une architecture classique route/controller/service avec un fichier dédié à la
+gestion des erreurs pour une meilleure maintenabilité. Un script s'exécute au lancement du serveur
+pour récupérer les données des chats depuis une API externe et les stocker dans la base de données
+Supabase.
+
+### 🌐 Frontend (Next.js)
+
+L'application frontend utilise les dernières fonctionnalités de Next.js, incluant les Server
+Components et les Server Actions pour optimiser les performances et la réactivité. Un contexte React
+est utilisé pour gérer le nombre de matchs joués. Les composants réutilisables et moins dépendants
+de l'API sont externalisés dans `packages/ui`.
+
+## 📥 Installation
+
+1. Assurez-vous d'avoir Node.js (version 18 ou supérieure) installé sur votre machine.
+2. Clonez le repository :
+
+```plaintext
+git clone https://github.com/votre-username/catmash.git
+cd catmash
 ```
 
-## What's inside?
+3. Installez les dépendances en utilisant l'un des gestionnaires de paquets suivants :
 
-This Turborepo includes the following packages/apps:
+1. Avec pnpm (recommandé, version 8.15.8) :
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
-- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Building packages/ui
-
-This example is set up to produce compiled styles for `ui` components into the `dist` directory. The component `.tsx` files are consumed by the Next.js apps directly using `transpilePackages` in `next.config.js`. This was chosen for several reasons:
-
-- Make sharing one `tailwind.config.js` to apps and packages as easy as possible.
-- Make package compilation simple by only depending on the Next.js Compiler and `tailwindcss`.
-- Ensure Tailwind classes do not overwrite each other. The `ui` package uses a `ui-` prefix for it's classes.
-- Maintain clear package export boundaries.
-
-Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update the `tailwind.config.js` in your apps to be aware of your package locations, so it can find all usages of the `tailwindcss` class names for CSS compilation.
-
-For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
-
-```js
-  content: [
-    // app content
-    `src/**/*.{js,ts,jsx,tsx}`,
-    // include packages if not transpiling
-    "../../packages/ui/*.{js,ts,jsx,tsx}",
-  ],
+```plaintext
+pnpm install
 ```
 
-If you choose this strategy, you can remove the `tailwindcss` and `autoprefixer` dependencies from the `ui` package.
+2. Avec yarn :
 
-### Utilities
+```plaintext
+yarn install
+```
 
-This Turborepo has some additional tools already setup for you:
+3. Avec npm :
 
-- [Tailwind CSS](https://tailwindcss.com/) for styles
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+```plaintext
+npm install
+```
+
+4. Configurez les variables d'environnement :
+
+1. Créez un fichier `.env` dans `apps/api/` et `apps/web/` avec les variables nécessaires (ex:
+   SUPABASE_URL, SUPABASE_KEY, etc.)
+
+## 🏁 Lancement du projet
+
+Pour lancer l'ensemble du projet (frontend et backend) en mode développement :
+
+- Avec pnpm :
+
+```plaintext
+pnpm dev
+```
+
+- Avec yarn :
+
+```plaintext
+yarn dev
+```
+
+- Avec npm :
+
+```plaintext
+npm dev
+```
+
+Pour lancer uniquement le frontend :
+
+- Avec pnpm :
+
+```plaintext
+pnpm dev:web
+```
+
+- Avec yarn :
+
+```plaintext
+yarn dev:web
+```
+
+- Avec npm :
+
+```plaintext
+npm dev:web
+```
+
+Pour lancer uniquement le backend :
+
+- Avec pnpm :
+
+```plaintext
+pnpm dev:api
+```
+
+- Avec yarn :
+
+```plaintext
+yarn dev:api
+```
+
+- Avec npm :
+
+```plaintext
+npm dev:api
+```
+
+## 🎯 Fonctionnalités
+
+- 🗳️ Vote pour le chat le plus mignon entre deux chats présentés
+- 🏆 Page de classement des chats les plus mignons
+- 🚀 Utilisation d'une fonction RPC Supabase 'increment_score' pour optimiser les appels API
+- 🖼️ Layout partagé avec logo de chat et barre de navigation
+- ⚡ Utilisation de Server Components et Server Actions pour optimiser les performances
+
+## 🔧 Améliorations possibles
+
+1. 🧪 **Tests** : Ajouter des tests unitaires et d'intégration pour améliorer la fiabilité du code.
+2. 📚 **Storybook** : Implémenter Storybook pour une meilleure documentation et développement des
+   composants UI.
+3. 🔄 **Streaming ou Webhooks** : Utiliser du streaming ou des webhooks pour rafraîchir en temps
+   réel le nombre de matchs joués, au lieu de le faire à chaque vote ou changement de page.
+4. 🚀 **Déploiement sur Vercel** : Trouver une solution pour déployer le backend Express sur Vercel,
+   ou envisager de migrer vers un backend Next.js pour faciliter le déploiement.
+5. ⚡ **Optimisation des performances** : Analyser et optimiser davantage les performances,
+   notamment pour le chargement initial et les interactions utilisateur.
+6. 🌍 **Internationalisation** : Ajouter le support pour plusieurs langues.
+7. ♿ **Accessibilité** : Améliorer l'accessibilité de l'application pour les utilisateurs ayant des
+   besoins spécifiques.
+8. 📱 **Mode hors ligne** : Implémenter des fonctionnalités de Progressive Web App pour permettre
+   une utilisation hors ligne limitée.
