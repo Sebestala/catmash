@@ -25,16 +25,17 @@ export const metadata: Metadata = {
 }
 
 /**
- * RootLayout component provides the root structure for the "Catmash" application,
- * including metadata, font settings, and layout structure.
+ * RootLayout component provides the main structure for the Catmash application,
+ * including global styles, font configurations, and context providers.
  *
  * @param {Readonly<{ children: React.ReactNode }>} children - The content to be displayed within the layout.
- * @returns {JSX.Element} The rendered root layout component.
+ * @returns {Promise<React.ReactElement>} The rendered root layout component.
  *
  * Features:
- * - Wraps the application in `CatProvider` to supply cat-related context.
+ * - Sets metadata for the application, including title and description.
+ * - Loads and applies custom local fonts (Geist Sans and Geist Mono) with CSS variables for styling.
+ * - Fetches the initial matches played count and provides it to the `MatchesProvider` context.
  * - Includes a fixed top navigation bar (`TopCatBar`) and a bottom navigation bar (`BottomBarNavigation`).
- * - Provides padding adjustments to ensure content is spaced appropriately from fixed headers and footers.
  */
 export default async function RootLayout({
   children

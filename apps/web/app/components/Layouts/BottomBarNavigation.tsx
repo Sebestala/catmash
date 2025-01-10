@@ -4,6 +4,17 @@ import { usePathname, useRouter } from 'next/navigation'
 import { ChevronUp } from 'lucide-react'
 import { useMatches } from '../../context/MatchesContext'
 
+/**
+ * BottomBarNavigation component displays a fixed bottom navigation bar
+ * allowing users to toggle between the home and ranking pages while showing the total matches played.
+ *
+ * @returns {React.ReactElement} The rendered bottom navigation bar component.
+ *
+ * Features:
+ * - Toggles navigation between the home ("/") and ranking ("/ranking") pages based on the current path.
+ * - Displays the total number of matches played using the `MatchesContext`.
+ * - Refreshes the matches count before navigating using the `refreshMatchesCount` function.
+ */
 export function BottomBarNavigation(): React.ReactElement {
   const router = useRouter()
   const pathname = usePathname()

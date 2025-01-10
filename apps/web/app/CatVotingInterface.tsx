@@ -10,6 +10,19 @@ interface CatVotingInterfaceProps {
   cats: Cat[]
 }
 
+/**
+ * CatVotingInterface component displays a pair of cats for voting,
+ * allowing users to increment the score of the chosen cat and update the total matches played.
+ *
+ * @param {Cat[]} cats - Array of cat objects to be used for voting.
+ * @returns {React.ReactElement} The rendered voting interface or a loading/empty state.
+ *
+ * Features:
+ * - Fetches a random pair of cats using the `getRandomPair` function.
+ * - Handles voting actions by calling the `voteForCat` action and updating the matches played.
+ * - Displays a loading spinner during the vote process.
+ * - Uses `CatCard` to render individual cat cards with like buttons.
+ */
 export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.ReactElement {
   const [isLoading, setIsLoading] = useState(false)
   const [pair, setPair] = useState<[Cat, Cat] | null>(null)

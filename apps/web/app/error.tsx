@@ -3,7 +3,20 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function Error({ error, reset }: { error: Error; reset: () => void }) {
+/**
+ * Error component displays an error message with options to retry or return to the homepage.
+ *
+ * @param {Error} error - The error object containing details about the error.
+ * @param {() => void} reset - A function to reset the error boundary state.
+ * @returns {React.ReactElement} The rendered error UI.
+ *
+ * Features:
+ * - Logs the error details to the console when the component mounts.
+ * - Provides a "Retry" button to reset the error boundary, refresh the page, and reload the window.
+ * - Provides a "Home" button to navigate back to the homepage and reload the page.
+ * - Displays the error name, message, and cause (if available) in a user-friendly format.
+ */
+export default function Error({ error, reset }: { error: Error; reset: () => void }): JSX.Element {
   const router = useRouter()
 
   useEffect(() => {

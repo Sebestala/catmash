@@ -1,6 +1,14 @@
 import { createCats } from '../services/catService'
 
-async function initCats() {
+/**
+ * Initializes the cat data by calling the `createCats` service.
+ *
+ * @returns {Promise<void>} Resolves when the initialization is complete.
+ *
+ * Features:
+ * - Calls `createCats` to populate and initialize the cat data.
+ */
+export default async function initCats(): Promise<void> {
   try {
     console.log('Initializing cats...')
     await createCats()
@@ -9,5 +17,3 @@ async function initCats() {
     console.error('Failed to initialize cats:', error)
   }
 }
-
-export default initCats

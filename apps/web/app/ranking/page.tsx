@@ -2,14 +2,16 @@ import { RankingCard } from '@repo/ui'
 import { getCats } from '../api/api'
 
 /**
- * RankingPage component displays a list of ranked cats based on their scores.
- * The top three cats are highlighted in a separate layout, followed by the remaining cats in a grid.
+ * RankingPage component fetches and displays a list of ranked cats.
  *
- * @returns {JSX.Element | null} The rendered ranking page component, or null if there are no cats to display.
+ * @returns {Promise<React.ReactElement | null>} A promise that resolves to the rendered ranking page component
+ * or null if no cats are available.
  *
  * Features:
- * - Fetches and sorts cat data from the `CatContext` by score in descending order.
- * - Highlights the top three cats in a prominent layout.
+ * - Fetches the list of cats and their scores using the `getCats` API.
+ * - Highlights the top 3 cats in a prominent layout with their rank, score, and image.
+ * - Displays the remaining cats in a responsive grid format.
+ * - Uses the `RankingCard` component to render individual cat rankings.
  */
 export default async function RankingPage(): Promise<React.ReactElement | null> {
   const { cats } = await getCats()

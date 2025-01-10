@@ -3,13 +3,27 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
+/**
+ * GlobalError component provides a full-page error interface for handling application-wide errors.
+ *
+ * @param {Error & { digest?: string }} error - The error object containing details about the error.
+ * @param {() => void} reset - A function to reset the error boundary state.
+ * @returns {React.ReactElement} The rendered global error UI.
+ *
+ * Features:
+ * - Logs the error details to the console when the component mounts.
+ * - Provides a "Retry" button to reset the error boundary, refresh the page, and reload the window.
+ * - Provides a "Home" button to navigate back to the homepage and reload the page.
+ * - Displays the error name, message, and cause (if available) in a user-friendly format.
+ * - Renders as a full HTML document with a styled error message for global use cases.
+ */
 export default function GlobalError({
   error,
   reset
 }: {
   error: Error & { digest?: string }
   reset: () => void
-}) {
+}): JSX.Element {
   const router = useRouter()
 
   useEffect(() => {

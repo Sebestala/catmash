@@ -1,3 +1,15 @@
+/**
+ * Express server setup and initialization.
+ *
+ * Features:
+ * - Configures environment variables using `dotenv`.
+ * - Sets up CORS to allow requests from the frontend.
+ * - Includes a JSON body parser for handling API requests.
+ * - Provides routes for root (`/`), testing (`/test`), and API endpoints (`/api`).
+ * - Handles undefined routes with a 404 error using `NotFoundError`.
+ * - Implements centralized error handling for custom and unexpected errors.
+ * - Initializes the cat data at server startup.
+ */
 import dotenv from 'dotenv'
 dotenv.config()
 

@@ -4,6 +4,18 @@ import { NotFoundError, BadRequestError, DatabaseError, ExternalApiError } from 
 
 const CAT_API_URL = 'https://data.latelier.co/cats.json'
 
+/**
+ * Creates and initializes cat data in the database.
+ *
+ * @returns {Promise<Cat[]>} A promise that resolves to the list of cats.
+ *
+ * Features:
+ * - Fetches cat images from an external API.
+ * - Inserts new cats into the database if they don't already exist.
+ * - Fetches and returns all cats after initialization.
+ *
+ * @throws {DatabaseError | ExternalApiError} If there is an error with the database or the external API.
+ */
 export async function createCats(): Promise<Cat[]> {
   try {
     const catsImages = await fetchExternalCatsImages()
@@ -42,6 +54,14 @@ export async function createCats(): Promise<Cat[]> {
   }
 }
 
+/**
+ * Fetches all cats from the database, sorted by score in descending order.
+ *
+ * @returns {Promise<Cat[]>} A promise that resolves to the list of cats.
+ *
+ * @throws {DatabaseError} If there is an error fetching cats from the database.
+ * @throws {NotFoundError} If no cats are found in the database.
+ */
 export async function getCats(): Promise<Cat[]> {
   const { data, error } = await supabase
     .from('cats')
@@ -59,6 +79,16 @@ export async function getCats(): Promise<Cat[]> {
   return data
 }
 
+/**
+ * Updates the score of a specific cat by its ID.
+ *
+ * @param {string} id - The ID of the cat to update.
+ * @returns {Promise<Cat>} A promise that resolves to the updated cat.
+ *
+ * @throws {BadRequestError} If the provided cat ID is invalid.
+ * @throws {DatabaseError} If there is an error updating the cat score or fetching the updated cat.
+ * @throws {NotFoundError} If the cat is not found after the update.
+ */
 export async function updateCatScore(id: string): Promise<Cat> {
   if (!id) {
     throw new BadRequestError('Invalid cat ID')
@@ -87,6 +117,14 @@ export async function updateCatScore(id: string): Promise<Cat> {
   return data
 }
 
+/**
+ * Fetches the total number of matches played by summing up cat scores.
+ *
+ * @returns {Promise<number>} A promise that resolves to the total number of matches played.
+ *
+ * @throws {DatabaseError} If there is an error fetching cat scores.
+ * @throws {NotFoundError} If no cat data is found.
+ */
 export async function getMatchesPlayed(): Promise<number> {
   const { data, error } = await supabase.from('cats').select('score')
 
