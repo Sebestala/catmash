@@ -67,94 +67,48 @@ de l'API sont externalisés dans `packages/ui`.
 2. Clonez le repository :
 
 ```plaintext
-git clone https://github.com/votre-username/catmash.git
+git clone https://github.com/Sebestala/catmash.git
 cd catmash
 ```
 
-3. Installez les dépendances en utilisant l'un des gestionnaires de paquets suivants :
-
-1. Avec pnpm (recommandé, version 8.15.8) :
+3. Installez les dépendances en utilisant l'un des gestionnaires de paquets (Avec pnpm il est
+   recommandé la version 8.15.8) :
 
 ```plaintext
 pnpm install
-```
-
-2. Avec yarn :
-
-```plaintext
 yarn install
-```
-
-3. Avec npm :
-
-```plaintext
 npm install
 ```
 
 4. Configurez les variables d'environnement :
 
-1. Créez un fichier `.env` dans `apps/api/` et `apps/web/` avec les variables nécessaires (ex:
-   SUPABASE_URL, SUPABASE_KEY, etc.)
+Créez un fichier `.env` dans `apps/api/` et `apps/web/` avec les variables nécessaires (ex:
+SUPABASE_URL, SUPABASE_KEY, etc.)
 
 ## 🏁 Lancement du projet
 
-Pour lancer l'ensemble du projet (frontend et backend) en mode développement :
-
-- Avec pnpm :
+Pour lancer l'ensemble du projet (frontend et backend) en mode développement en utilisant l'un des
+gestionnaires de paquets :
 
 ```plaintext
 pnpm dev
-```
-
-- Avec yarn :
-
-```plaintext
 yarn dev
-```
-
-- Avec npm :
-
-```plaintext
 npm dev
 ```
 
 Pour lancer uniquement le frontend :
 
-- Avec pnpm :
-
 ```plaintext
 pnpm dev:web
-```
-
-- Avec yarn :
-
-```plaintext
 yarn dev:web
-```
-
-- Avec npm :
-
-```plaintext
 npm dev:web
 ```
 
 Pour lancer uniquement le backend :
 
-- Avec pnpm :
-
 ```plaintext
 pnpm dev:api
-```
-
-- Avec yarn :
-
-```plaintext
 yarn dev:api
-```
-
-- Avec npm :
-
-```plaintext
 npm dev:api
 ```
 
