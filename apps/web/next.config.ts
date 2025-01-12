@@ -1,10 +1,7 @@
 import type { NextConfig } from 'next'
 
-const tumblrDomains = Array.from({ length: 50 }, (_, i) => `${i}.media.tumblr.com`)
-
 const nextConfig: NextConfig = {
   images: {
-    domains: tumblrDomains,
     remotePatterns: [
       {
         protocol: 'http',

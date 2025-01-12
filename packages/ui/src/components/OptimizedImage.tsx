@@ -31,6 +31,8 @@ export const OptimizedImage = memo(function OptimizedImage({
   className,
   style
 }: OptimizedImageProps) {
+  const isGif = url?.toLowerCase().endsWith('.gif') ?? false
+
   return (
     <Image
       src={url || ''}
@@ -41,6 +43,7 @@ export const OptimizedImage = memo(function OptimizedImage({
       fill
       loading={rank <= 11 ? 'eager' : 'lazy'}
       priority={rank <= 11}
+      unoptimized={!isGif}
     />
   )
 })
