@@ -16,7 +16,7 @@ export async function getCats(): Promise<{
   cats: Cat[]
 }> {
   const response = await fetch(`${API_URL}/api/cats`, {
-    next: { revalidate: 0 }
+    next: { revalidate: process.env.NODE_ENV === 'production' ? 3600 : 0 }
   })
 
   if (!response.ok) {
