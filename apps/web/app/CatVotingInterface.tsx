@@ -28,15 +28,9 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
   const [pair, setPair] = useState<[Cat, Cat] | null>(null)
   const { incrementMatchesPlayed } = useMatches()
 
-  const getRandomPair = useCallback((): [Cat, Cat] | null => {
-    if (!cats || cats.length < 2) return null
-    const shuffled = [...cats].sort(() => 0.5 - Math.random())
-    return [shuffled[0], shuffled[1]]
-  }, [cats])
-
   useEffect(() => {
-    setPair(getRandomPair())
-  }, [getRandomPair])
+    setPair(getRandomPair(cats))
+  }, [])
 
   const handleVote = async (id: string) => {
     setIsLoading(true)
@@ -44,7 +38,7 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
       const result = await voteForCat(id)
       if (result.success) {
         incrementMatchesPlayed()
-        setPair(getRandomPair())
+        setPair(getRandomPair(cats))
       } else {
         console.error('Failed to update cat score:', result.error)
       }
@@ -90,4 +84,14 @@ export function CatVotingInterface({ cats }: CatVotingInterfaceProps): React.Rea
       </div>
     </Suspense>
   )
+}
+
+function getRandomPair(cats: Cat[]): [Cat, Cat] | null {
+  if (!cats || cats.length < 2) return null
+
+  const index1 = Math.floor(Math.random() * cats.length)
+  const remainingCats = [...cats.slice(0, index1), ...cats.slice(index1 + 1)]
+  const index2 = Math.floor(Math.random() * remainingCats.length)
+
+  return [cats[index1], remainingCats[index2]]
 }
