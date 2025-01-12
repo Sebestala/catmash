@@ -20,7 +20,8 @@ export async function createCats(): Promise<Cat[]> {
   try {
     const catsImages = await fetchExternalCatsImages()
     const cats = catsImages.map((cat, index) => ({
-      ...cat,
+      id: cat.id,
+      url: ensureHttps(cat.url || ''),
       catNumber: index + 1,
       score: 0
     }))
@@ -147,4 +148,11 @@ async function fetchExternalCatsImages(): Promise<Partial<Cat>[]> {
   } catch (error) {
     throw new ExternalApiError('Failed to fetch cats from external API')
   }
+}
+
+function ensureHttps(url: string): string {
+  if (url.startsWith('http://')) {
+    return url.replace('http://', 'https://')
+  }
+  return url
 }
