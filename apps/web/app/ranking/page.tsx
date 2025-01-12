@@ -1,5 +1,5 @@
 import { RankingCard } from '@repo/ui'
-import { getCats } from '../api/api'
+import { getCats } from '@/api/api'
 
 /**
  * RankingPage component fetches and displays a list of ranked cats.

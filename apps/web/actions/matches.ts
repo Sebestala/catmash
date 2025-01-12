@@ -1,6 +1,6 @@
 'use server'
 
-import { getMatchesPlayed } from '../api/api'
+import { getMatchesPlayed } from '@/api/api'
 
 /**
  * Server Action: Increments and fetches the updated count of matches played.

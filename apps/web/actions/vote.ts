@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { updateCatScore } from '../api/api'
+import { updateCatScore } from '@/api/api'
 
 /**
  * Server Action: Votes for a specific cat by updating its score and revalidating the ranking page.

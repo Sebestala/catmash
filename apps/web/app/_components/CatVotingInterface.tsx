@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useCallback, Suspense } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import type { Cat } from '@repo/types'
 import { AnimatePresence } from 'framer-motion'
-import { voteForCat } from './actions/vote'
-import { useMatches } from '@/app/context/MatchesContext'
+import { voteForCat } from '@/actions/vote'
+import { useMatches } from '@/context/MatchesContext'
 import { Loading, CatCard } from '@repo/ui'
 interface CatVotingInterfaceProps {
   cats: Cat[]

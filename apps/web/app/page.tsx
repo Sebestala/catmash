@@ -1,5 +1,5 @@
-import { CatVotingInterface } from './CatVotingInterface'
-import { getCats } from './api/api'
+import { CatVotingInterface } from './_components/CatVotingInterface'
+import { getCats } from '@/api/api'
 
 /**
  * Home component fetches the list of cats and renders the `CatVotingInterface` for user interaction.

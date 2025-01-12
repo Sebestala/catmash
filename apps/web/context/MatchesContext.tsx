@@ -1,6 +1,6 @@
 'use client'
 
-import { fetchMatchesCount, incrementMatches } from '../actions/matches'
+import { fetchMatchesCount, incrementMatches } from '@/actions/matches'
 import React, { createContext, useContext, useState, ReactNode } from 'react'
 
 interface MatchesContextProps {

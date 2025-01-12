@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation'
 import { ChevronUp } from 'lucide-react'
-import { useMatches } from '../../context/MatchesContext'
+import { useMatches } from '@/context/MatchesContext'
 
 /**
  * BottomBarNavigation component displays a fixed bottom navigation bar
