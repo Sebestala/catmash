@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '../../lib/utils'
-import { transformToProtocolRelativeUrl } from '../../lib/url'
+import { OptimizedImage } from '../OptimizedImage'
 
 interface CatCardProps {
   imageUrl: string
@@ -45,6 +45,7 @@ export function CatCard({
   return (
     <motion.div
       key={catNumber}
+      title={`Chat mignon ${catNumber}`}
       initial={{
         opacity: 0,
         scale: 0.8,
@@ -75,18 +76,15 @@ export function CatCard({
         )}
       >
         <div className="relative flex h-full w-full flex-grow overflow-hidden rounded-lg pt-[100%]">
-          <Image
-            src={transformToProtocolRelativeUrl(imageUrl)}
-            alt={`Chat mignon ${catNumber}`}
+          <OptimizedImage
+            url={imageUrl}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className={cn(
               'transition-all duration-300 ease-in-out',
               isLiked ? 'scale-105' : ''
             )}
+            rank={catNumber}
             style={{ objectFit: 'cover' }}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            fill
-            priority
-            unoptimized
           />
           <div
             className={cn(

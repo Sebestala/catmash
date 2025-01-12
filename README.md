@@ -114,5 +114,3 @@ pnpm dev:api
    composants UI.
 3. 🔄 **Streaming ou WebSockets** : Utiliser du streaming ou des WebSockets pour rafraîchir en temps
    réel le nombre de matchs joués, au lieu de le faire à chaque vote ou changement de page.
-4. 🚀 **Déploiement sur Vercel** : Trouver une solution pour déployer le backend Express sur Vercel,
-   ou envisager de migrer vers un backend Next.js pour faciliter le déploiement.

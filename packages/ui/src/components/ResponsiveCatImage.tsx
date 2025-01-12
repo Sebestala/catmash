@@ -23,6 +23,7 @@ export function ResponsiveCatImage(): JSX.Element {
 
   return (
     <motion.div
+      title="Logo Catmash"
       className="relative h-8 w-8 md:h-10 md:w-10 xl:h-14 xl:w-14"
       variants={bounceVariants}
       initial="initial"

@@ -1,7 +1,6 @@
 import { cn } from '../../lib/utils'
 import type { Cat } from '@repo/types'
-import Image from 'next/image'
-import { transformToProtocolRelativeUrl } from '../../lib/url'
+import { OptimizedImage } from '../OptimizedImage'
 
 interface RankingCardProps extends Partial<Cat> {
   rank: number
@@ -61,15 +60,13 @@ export function RankingCard({
         'overflow-hidden rounded-xl border'
       )}
     >
-      <Image
-        src={url ? transformToProtocolRelativeUrl(url) : ''}
-        alt={`Chat ${rank}`}
+      <OptimizedImage
+        url={url}
+        rank={rank}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className={`rounded-lg object-cover`}
-        fill
-        priority
-        unoptimized
+        className="rounded-lg object-cover"
       />
+
       <div className="absolute left-1/2 top-6 z-10 flex -translate-x-1/2 flex-col items-center">
         <div
           className={cn(
