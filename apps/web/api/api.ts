@@ -20,7 +20,7 @@ export async function getCats(): Promise<{
   })
 
   if (!response.ok) {
-    throw new Error(response.statusText)
+    throw new Error('Failed to fetch cats: ' + response.statusText)
   }
   const data = await response.json()
   return { cats: data }

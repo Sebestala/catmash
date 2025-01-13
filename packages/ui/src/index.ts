@@ -1,5 +1,4 @@
 export * from './lib/utils'
-export * from './lib/url'
 export * from './components/Cards/RankingCard'
 export * from './components/Cards/CatCard'
 export * from './components/Loading'
