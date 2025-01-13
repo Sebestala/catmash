@@ -14,7 +14,10 @@
 
 Catmash est une application web permettant aux utilisateurs de voter pour le chat le plus mignon et
 de consulter un classement des chats les plus populaires. Ce projet a été développé en utilisant une
-architecture monorepo avec Turborepo, combinant un frontend Next.js et un backend Express.
+architecture monorepo avec Turborepo, combinant un frontend Next.js et un backend Express. Pour la
+partie base de données j'ai utilisé Supabase.
+
+Ce projet à été déployé sur Vercel à l'adresse suivante: https://catmash-web-iota.vercel.app/
 
 ## 🚀 Technologies utilisées
 
